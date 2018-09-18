@@ -85,6 +85,7 @@ class Auth extends Component {
             pictureDeclaration
         )
             .then(data => {
+                //Receives the User Token and stores it in the local Storage
                 localStorage.setItem('identity', data.token)
                 UserStore.setUser()
                 this.props.history.push('/')

@@ -6,14 +6,19 @@ const storySchema = new Schema({
     type: String, 
     required: true,
   },
-  originalAuthor: {
+  originalAuthorId: {
     type: Schema.Types.ObjectId, //User who started the story
     required: true,
     ref: "User"
   },
+  originalAuthorName: {
+    type: String,
+    required: true,
+  },
   contributors: {
     type: [Schema.Types.ObjectId], //All users who contributed to the story
-    ref: "User"
+    ref: "User",
+    default: []
   },
   tagline: {
     type: String,
@@ -59,6 +64,7 @@ const storySchema = new Schema({
   characters: {
     type: [Schema.Types.ObjectId],
     ref: "Character",
+    default: [],
   }, //CharacterIds will be stored here, characters can be added by every contributer
   is_being_updated: {
     type: Boolean,

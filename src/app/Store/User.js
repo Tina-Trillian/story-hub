@@ -26,6 +26,10 @@ class UserStore {
 
     @action
     setUser = () => {
+
+        //gets all User Data from the local Storage, which was send as a token
+        //that's why it needs decoding
+
         const token = localStorage.getItem('identity')
         if (token) {
             const decoded = jwtDecode(token)

@@ -35,6 +35,9 @@ router.post('/sign-up', (req, res) => {
                 config.SECRET_JWT_PASSPHRASE
             )
             res.send({ token })
+            //After singing up, creates a token and sends it back to authenticate
+            //This token needs to have ALL information I will need later to handle
+            //the User Object
         })
 })
 
@@ -63,6 +66,10 @@ router.post('/sign-in', (req, res) => {
             config.SECRET_JWT_PASSPHRASE
         )
         res.send({ token })
+
+            //After singing in, creates a token and sends it back to authenticate
+            //This token needs to have ALL information I will need later to handle
+            //the User Object
     })
 })
 

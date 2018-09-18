@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 const authRoutes = require('./auth')
+const storiesRoutes = require("./stories")
+
 const { userMiddleware, checkLoggedIn } = require('../../utils/middleware')
 
 router.use(userMiddleware)
@@ -16,6 +18,8 @@ router.get('/protected', checkLoggedIn, (req, res) => {
 })
 
 router.use('/auth', authRoutes)
+
+router.use("/stories", storiesRoutes)
 
 router.use((req, res) => {
     res.status(404).send({ error: 'not-found' })
