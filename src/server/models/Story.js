@@ -15,6 +15,8 @@ const storySchema = new Schema({
     type: String,
     required: true,
   },
+  //might be that I take it out later and take the author name from the
+  //author object
   contributors: {
     type: [Schema.Types.ObjectId], //All users who contributed to the story
     ref: "User",
@@ -66,6 +68,7 @@ const storySchema = new Schema({
     ref: "Character",
     default: [],
   }, //CharacterIds will be stored here, characters can be added by every contributer
+  
   is_being_updated: {
     type: Boolean,
     default: false,

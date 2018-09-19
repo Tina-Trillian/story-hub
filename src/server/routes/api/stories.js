@@ -4,6 +4,8 @@ const router = express.Router();
 const Story = require("../../models/Story");
 const Part = require("../../models/Part");
 const Character = require("../../models/Character");
+const User = require("../../models/User");
+
 
 const { userMiddleware, checkLoggedIn } = require("../../utils/middleware");
 
@@ -27,8 +29,39 @@ router.get("/all", (req, res) => {
   });
 });
 
-//Maybe later get a Route that searches all Stories by req.user
-//and a Route that searches for all Parts by req.user
+//Get all contributors for story
+router.get("/:id/contributors", (req, res) => {
+  Story.findById(req.params.id)
+  .populate("originalAuthorId")
+  .populate("contributors")
+  .then(story => {
+    res.send({
+      originalAuthor: story.originalAuthorId,
+      contributors: story.contributors
+    })
+  })
+})
+
+//Get all characters for story
+//TO TEST
+router.get("/:id/characters", (req, res) => {
+
+  Story.findById(req.params.id)
+  .populate("characters")
+  .then(story => {
+    res.send(story.characters);
+  });
+});
+
+//Get all content for story
+//TO TEST
+router.get("/:id/content", (req, res) => {
+  Story.findById(req.params.id)
+  .populate("parts")
+  .then(story => {
+    res.send(story.parts);
+  });
+});
 
 router.get("/:id", (req, res) => {
   //Will find a Story with the right Id and display it
@@ -65,15 +98,37 @@ router.post("/:id/add", (req, res) => {
         index_story: index
       })
 
-      story.content = story.content.concat([part._id]);
-      story.save();
-      part.save();
+      User.findById(req.body.authorId)
+      .then(user => {
+
+        user.parts = user.parts.concat([part._id])
+        story.content = story.content.concat([part._id]);
+         if (story.contributors.indexOf(user._id) === -1)
+        {story.contributors = story.contributors.concat([user._id])}
+
+        //will push the UserId into the contributors array, as long as the user is not 
+        //already in it
+        //Caution! If the Original Author adds a Part they will appear double
+        //inside original author and in contributors
+
+        story.save();
+        part.save();
+        user.save();
      
-      res.send(story); //maybe it is necessary to send the part here
-      //will see later
+        res.send(story); //maybe it is necessary to send the part here
+        //will see later
+
+      })
+
+      
     }
 
     if (req.body.name) {
+
+      //No need to push characters into user array
+      //does not make sense to store them there
+      //if necessary, will get the charaters of a user through search
+
       const character = new Character({
         story: story._id,
         authorId: req.body.authorId,
@@ -82,7 +137,7 @@ router.post("/:id/add", (req, res) => {
         description: req.body.description,
         age: req.body.age,
         gender: req.body.gender
-        //later maybe a picture as well
+        //TODO later maybe a picture as well
       })
 
       story.characters = story.characters.concat([character._id]);
@@ -96,7 +151,7 @@ router.post("/:id/add", (req, res) => {
 });
 
 router.post("/:id/update", (req, res) => {
-  //Should be called when the story is updated -> toggle is_being_updated
+  //TODO Should be called when the story is updated -> toggle is_being_updated
 });
 
 //might not need the edit route, as the story is "edited" through the parts and character creation
@@ -117,7 +172,7 @@ router.post("/new", (req, res) => {
   } = req.body;
 
   //Will create a new Story with the given parameters
-  //need later to check if the Booleans etc. are given or not
+  //TODO need later to check if the Booleans etc. are given or not
 
   new Story({
     title,
