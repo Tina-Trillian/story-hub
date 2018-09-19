@@ -7,10 +7,14 @@ const characterSchema = new Schema({
     required: true,
     ref: "Story"
   },
-  author: {
+  authorId: {
     type: Schema.Types.ObjectId, //User who added the character to the story
     required: true,
     ref: "User"
+  },
+  authorName: {
+    type: String,
+    required: true,
   },
   name: {
     type: String,
