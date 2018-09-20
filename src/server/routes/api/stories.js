@@ -21,6 +21,11 @@ router.get("/", (req, res) => {
 //     res.send({ success: true })
 // })
 
+router.get("/all-genre", (req, res) => {
+  //will get all genres for later to display
+  res.send(Story.schema.tree.genre.enum)
+});
+
 router.get("/all", (req, res) => {
   //will get all stories that are in the database
 
@@ -28,6 +33,8 @@ router.get("/all", (req, res) => {
     res.send({ stories });
   });
 });
+
+
 
 //Get all contributors for story
 router.get("/:id/contributors", (req, res) => {
@@ -174,18 +181,28 @@ router.post("/new", (req, res) => {
   //Will create a new Story with the given parameters
   //TODO need later to check if the Booleans etc. are given or not
 
+  //TOTEST if the story Id gets updated to the User Array
   new Story({
     title,
     tagline,
     setting,
     genre,
     originalAuthorId,
-    originalAuthorName
+    originalAuthorName,
   })
     .save()
     .then(story => {
-      res.send(story);
-    });
+      
+      User.findById(story.originalAuthorId)
+      .then(user => {
+        user.stories = user.stories.concat([stoy._id])
+        user.save()
+      })
+
+      return story
+    }).then(story => {
+      res.send(story)
+    })
 });
 
 router.use((req, res) => {

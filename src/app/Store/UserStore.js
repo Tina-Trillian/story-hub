@@ -47,6 +47,7 @@ class UserStore {
 
     @action
     resetUser = () => {
+        console.log("Log Out")
         this._id = null
         this.email = null
         this.profilePicture = null

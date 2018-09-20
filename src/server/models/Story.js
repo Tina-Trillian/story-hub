@@ -38,6 +38,7 @@ const storySchema = new Schema({
   genre: {
     type: [String],
     enum: [
+      "none",
       "action",
       "adventure",
       "crime",

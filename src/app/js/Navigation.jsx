@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { observer } from 'mobx-react'
 
-import UserStore from '../Store/User'
+import UserStore from '../Store/UserStore'
 
 const Navigation = props => {
     return (

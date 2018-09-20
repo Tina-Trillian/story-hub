@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
-import UserStore from '../../Store/User'
+import UserStore from '../../Store/UserStore'
 
 @observer
 class Profile extends Component {
@@ -12,7 +12,7 @@ class Profile extends Component {
 
         return (
             <div className="container">
-                <img src={UserStore.profilePicture} alt="" />
+                <img src={UserStore.profilePicture} alt="" width="100px"/>
                 <br />
                 {UserStore.username}
                 <br />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import UserStore from '../../Store/User'
+import UserStore from '../../Store/UserStore'
 
 
 class Logout extends React.Component {
