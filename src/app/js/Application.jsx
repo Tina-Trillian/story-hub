@@ -8,6 +8,8 @@ import Auth from './Auth'
 import Home from './Home'
 import Navigation from './Navigation'
 import Profile from './Profile'
+import ProfilePublic from './Public/ProfilePublic'
+
 import Stories from './Stories'
 import NotFound from './NotFound'
 
@@ -28,6 +30,7 @@ class Application extends React.Component {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/profile" component={Profile} />
+                        <Route path="/profile/:id" component={ProfilePublic} />
                         <Route path="/stories" component={Stories} />
                         <Route path="/auth" component={Auth} />
                         <Route component={NotFound} />

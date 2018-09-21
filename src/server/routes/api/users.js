@@ -34,8 +34,19 @@ router.get("/all", (req, res) => {
 //view of other users!
 router.get("/:id", (req, res) => {
     User.findById(req.params.id)
+    .populate("stories")
+    .populate({
+      path: 'parts',
+      populate: { path: 'story' }
+    })
     .then(user => {
-        res.send(user)
+        res.send({
+          username: user.username,
+          profilePicture: user.profilePicture,
+          description: user.description,
+          stories: user.stories,
+          parts: user.parts,
+        })
     })
 })
 

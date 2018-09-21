@@ -23,16 +23,16 @@ const userSchema = new Schema({
         type: String,
         default: "I'm still thinking about a good description :)"
     },
-    stories: {
-        type: [Schema.Types.ObjectId],
+    stories: [{
+        type: Schema.Types.ObjectId,
         ref: "Story",
         default: [],
-    }, //All the stories the User created/started
-    parts: {
-       type: [Schema.Types.ObjectId],
+    }], //All the stories the User created/started
+    parts: [{
+       type: Schema.Types.ObjectId,
        ref: "Part",
        default: []
-    } //All parts the User contributed to stories
+    }] //All parts the User contributed to stories
     //might inlcude the StoryIds here instead of Part, will see later
 })
 

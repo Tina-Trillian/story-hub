@@ -1,52 +1,35 @@
-import React, { Component } from "react";
-import { Link } from 'react-router-dom'
-import {observer} from "mobx-react"
-import { toJS} from "mobx"
-
-import api from "../utils/api"
-import StoryStore from "../../Store/StoryStore";
+import React from 'react'
+import axios from 'axios'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { observer } from 'mobx-react'
 
 
 
-class Stories extends Component {
-  constructor(props) {
-    super(props);
+import NotFound from '../NotFound'
+import List from './List'
+import Details from './Details';
+import NewStory from './NewStory';
 
-    this.state = {
-        stories : []
-    }
-  }
 
-  componentDidMount() {
 
-    StoryStore.setStories()
-        // api.get("/api/stories/all")
-        // .then(({stories}) => {
-        //     this.setState({
-        //         stories : stories
-        //     })
-        // })
-  }
 
-  render() {
-    console.log("Storystor", toJS(StoryStore))
-    const list = StoryStore.stories.map((el,index) => {
+class Stories extends React.Component {
+  
+    render() {
         return (
-        <div key={`story_${index}`}>
-        <Link to={`/stories/${el._id}`}>
-            <h2>{el.title}</h2>
-            <h3>{el.tagline}</h3>
-            </Link>
-            </div>)
-    })
-
-    return (
-      <div>
-        <h1>Here are all the stories!</h1>
-        {list}
-      </div>
-    );
-  }
+            <BrowserRouter>
+                <div>
+                    <Switch>
+                        <Route exact path="/stories" component={List} />
+                        <Route exact path="/stories/new" component={NewStory} />
+                        <Route exact path="/stories/:id" component={Details} />
+                        <Route component={NotFound} />
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        )
+    }
 }
 
-export default observer(Stories);
+export default observer(Stories)
+

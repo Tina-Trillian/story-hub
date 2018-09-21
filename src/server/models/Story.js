@@ -17,24 +17,24 @@ const storySchema = new Schema({
   },
   //might be that I take it out later and take the author name from the
   //author object
-  contributors: {
-    type: [Schema.Types.ObjectId], //All users who contributed to the story
+  contributors: [{
+    type: Schema.Types.ObjectId, //All users who contributed to the story
     ref: "User",
     default: []
-  },
+  }],
   tagline: {
     type: String,
     required: true,
   },
-  content: {
-    type: [Schema.Types.ObjectId],
+  content: [{
+    type: Schema.Types.ObjectId,
     ref: "Part"
-  }, //PartIds will be stored here to form the story
+  }], //PartIds will be stored here to form the story
   //may be required later, depends on whether User will add a first Part by creating the story
-  setting: {
+  tag: {
     type: [String],
     default: ["none"]
-  }, //Setting can be decided by the original Auhtor, can be any String
+  }, //Tags can be decided by the original Auhtor, can be any String
   genre: {
     type: [String],
     enum: [
@@ -64,11 +64,11 @@ const storySchema = new Schema({
     type: String,
     default: "https://images.unsplash.com/photo-1526243741027-444d633d7365?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7491eb281478f3b97661bae38cbcb34b&auto=format&fit=crop&w=751&q=80"
   },
-  characters: {
-    type: [Schema.Types.ObjectId],
+  characters: [{
+    type: Schema.Types.ObjectId,
     ref: "Character",
     default: [],
-  }, //CharacterIds will be stored here, characters can be added by every contributer
+  }], //CharacterIds will be stored here, characters can be added by every contributer
   
   is_being_updated: {
     type: Boolean,

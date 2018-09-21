@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const upload = require('../../utils/upload')
+
 
 const Story = require("../../models/Story");
 const Part = require("../../models/Part");
@@ -29,7 +31,8 @@ router.get("/all-genre", (req, res) => {
 router.get("/all", (req, res) => {
   //will get all stories that are in the database
 
-  Story.find({}).then(stories => {
+  Story.find({})
+  .then(stories => {
     res.send({ stories });
   });
 });
@@ -41,6 +44,7 @@ router.get("/:id/contributors", (req, res) => {
   Story.findById(req.params.id)
   .populate("originalAuthorId")
   .populate("contributors")
+  .exec()
   .then(story => {
     res.send({
       originalAuthor: story.originalAuthorId,
@@ -61,19 +65,23 @@ router.get("/:id/characters", (req, res) => {
 });
 
 //Get all content for story
-//TO TEST
+//might not need this route
 router.get("/:id/content", (req, res) => {
   Story.findById(req.params.id)
-  .populate("parts")
+  .populate("content")
   .then(story => {
-    res.send(story.parts);
+    res.send(story);
   });
 });
 
 router.get("/:id", (req, res) => {
   //Will find a Story with the right Id and display it
-
-  Story.findById(req.params.id).then(story => {
+  Story.findById(req.params.id)
+  .populate("content")
+  .populate("contributors")
+  .populate("originalAuthorId")
+  .populate("characters")
+  .then(story => {
     res.send(story);
   });
 });
@@ -169,40 +177,93 @@ router.patch("/:id/edit", (req, res) => {
 });
 
 router.post("/new", (req, res) => {
-  const {
-    title,
-    tagline,
-    setting,
-    genre,
-    originalAuthorId,
-    originalAuthorName
-  } = req.body;
 
-  //Will create a new Story with the given parameters
-  //TODO need later to check if the Booleans etc. are given or not
+  if (req.files)
+  upload(req.files.picture)
+  .then(result => {
+    const {
+      title,
+      tagline,
+      tag,
+      genre,
+      originalAuthorId,
+      originalAuthorName,
+      is_being_updated,
+      is_finished,
+      is_public,
+      is_moderated,
+    } = req.body;
 
-  //TOTEST if the story Id gets updated to the User Array
-  new Story({
-    title,
-    tagline,
-    setting,
-    genre,
-    originalAuthorId,
-    originalAuthorName,
-  })
-    .save()
-    .then(story => {
-      
-      User.findById(story.originalAuthorId)
-      .then(user => {
-        user.stories = user.stories.concat([stoy._id])
-        user.save()
+    new Story({
+      title,
+      tagline,
+      tag,
+      genre,
+      originalAuthorId,
+      originalAuthorName,
+      is_being_updated,
+      is_finished,
+      is_public,
+      is_moderated,
+      picture : result
+    })
+      .save()
+      .then(story => {
+        User.findById(story.originalAuthorId)
+        .then(user => {
+          user.stories = user.stories.concat([story._id])
+          user.save()
+        })
+        return story
+      }).then(story => {
+        res.send(story)
       })
 
-      return story
-    }).then(story => {
-      res.send(story)
+  })
+
+  else if(!req.files) {
+    const {
+      title,
+      tagline,
+      tag,
+      genre,
+      originalAuthorId,
+      originalAuthorName,
+      is_being_updated,
+      is_finished,
+      is_public,
+      is_moderated,
+    } = req.body;
+
+    new Story({
+      title,
+      tagline,
+      tag,
+      genre,
+      originalAuthorId,
+      originalAuthorName,
+      is_being_updated,
+      is_finished,
+      is_public,
+      is_moderated,
     })
+      .save()
+      .then(story => {
+        User.findById(story.originalAuthorId)
+        .then(user => {
+          user.stories = user.stories.concat([story._id])
+          user.save()
+        })
+        return story
+      }).then(story => {
+        res.send(story)
+      })
+
+  }
+
+  //Will create a new Story with the given parameters
+  //TODO Clean this up later and bundle it together!
+
 });
 
 router.use((req, res) => {

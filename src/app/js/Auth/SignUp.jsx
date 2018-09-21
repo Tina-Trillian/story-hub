@@ -47,7 +47,6 @@ class SignUp extends React.Component {
                 <br />
                 <input
                     type="file"
-                    // value={SignUpStore.picture}
                     onChange={evt => SignUpStore.handleInputChange('picture', evt.target.files[0])}
                     className="input"
                     placeholder="Profile Picture"

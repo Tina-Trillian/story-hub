@@ -7,16 +7,24 @@ class StoryStore {
   @observable
   stories = [];
 
+  @observable
+  story = {};
+
+
+  @action 
+  getStoryById = (id) => {
+      api.get(`/api/stories/${id}`).then(data => {
+        this.story = data
+      })
+  }
 
   @action
   setStories = () => {
-      api.get("/api/stories/all")
-      .then(stories => {
-          this.stories.concat(stories.stories)
-          
+    api.get('/api/stories/all').then(data => {
 
-      })
-  }
+        this.stories = data.stories
+    })
+}
   
 }
 
