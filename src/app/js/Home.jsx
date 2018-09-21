@@ -8,7 +8,7 @@ const Home = props => {
     
     return (
         <div className="container">
-            <h1>Hello, what`up?{UserStore._id ? UserStore.username : 'Stranger'}!</h1>
+            <h1>Hello, what`up? Wie geht's?{UserStore._id ? UserStore.username : 'Stranger'}!</h1>
             <h3><Link to="/stories">See all stories</Link></h3>
         </div>
     )
