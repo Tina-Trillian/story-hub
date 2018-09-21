@@ -28,7 +28,7 @@ class ProfilePublic extends Component {
             <div className="container">
                 <img src="" alt="" width="100px"/>
                 <br />
-                This is {ProfileStore.username}
+                {ProfileStore.username}
                 <br />
                 {ProfileStore.description}
                 <br />
