@@ -72,13 +72,10 @@ router.get("/:id/stories", (req, res) => {
 //TO TEST
 //Get all the Parts a User has written
 router.get("/:id/parts", (req, res) => {
-    
-    User.findById(req.params.id)
-    .populate("parts")
-    .then(user => {
-        res.send({
-            parts: user.parts
-        })
+    Part.find({authorId: req.params.id})
+    .populate("story")
+    .then(result => {
+      res.send(result)
     })
 })
 

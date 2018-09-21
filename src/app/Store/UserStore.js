@@ -1,27 +1,29 @@
 import { observable, action, toJS } from 'mobx'
 import jwtDecode from 'jwt-decode'
 
+import api from "../js/utils/api";
+
 class UserStore {
     @observable
-    _id = null
+    _id = ""
 
     @observable
-    email = null
+    email = ""
 
     @observable
-    profilePicture = null
+    profilePicture = ""
 
     @observable
-    description = null
+    description = ""
 
     @observable
-    username = null
+    username = ""
 
     @observable 
-    stories = null
+    stories = []
 
     @observable
-    parts = null
+    parts = []
 
 
     @action
@@ -34,27 +36,37 @@ class UserStore {
         if (token) {
             const decoded = jwtDecode(token)
             delete decoded.iat
-
             this._id = decoded._id
             this.email = decoded.email
             this.profilePicture = decoded.profilePicture
             this.description = decoded.description
             this.username = decoded.username
-            this.stories = decoded.stories
-            this.parts = decoded.parts
+
+            api.get(`/api/users/${decoded._id}/stories`)
+            .then(stories => {
+                this.stories = stories
+
+                return api.get(`/api/users/${decoded._id}/parts`)
+            }).then(parts => {
+                this.parts = parts
+            }).then(result => console.log("User Set"))
+        
         }
+
+        //get the stories and parts seperatlely because it is not updated in the token!
+        //so we do a different api.call for them
     }
 
     @action
     resetUser = () => {
         console.log("Log Out")
-        this._id = null
-        this.email = null
-        this.profilePicture = null
-        this.description = null
-        this.username = null
-        this.stories = null
-        this.parts = null
+        this._id = ""
+        this.email = ""
+        this.profilePicture = ""
+        this.description = ""
+        this.username = ""
+        this.stories = ""
+        this.parts = ""
     }
 }
 

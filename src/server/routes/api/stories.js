@@ -8,7 +8,6 @@ const Part = require("../../models/Part");
 const Character = require("../../models/Character");
 const User = require("../../models/User");
 
-
 const { userMiddleware, checkLoggedIn } = require("../../utils/middleware");
 
 router.use(userMiddleware);
@@ -178,6 +177,7 @@ router.patch("/:id/edit", (req, res) => {
 
 router.post("/new", (req, res) => {
 
+
   if (req.files)
   upload(req.files.picture)
   .then(result => {
@@ -194,11 +194,17 @@ router.post("/new", (req, res) => {
       is_moderated,
     } = req.body;
 
+  if (!title || !tagline) res.status(400).send({ error: 'Please add a title and tag.' })
+
+
+    const genreList = genre !== "" ? genre.split(",") : undefined
+    const tagList = tag !== "" ? tag.split(",") : undefined
+
     new Story({
       title,
       tagline,
-      tag,
-      genre,
+      tag: tagList,
+      genre: genreList,
       originalAuthorId,
       originalAuthorName,
       is_being_updated,
@@ -235,11 +241,17 @@ router.post("/new", (req, res) => {
       is_moderated,
     } = req.body;
 
+  if (!title || !tagline) res.status(400).send({ error: 'Please add a title and tag.' })
+
+
+    const genreList = genre !== "" ? genre.split(",") : undefined
+    const tagList = tag !== "" ? tag.split(",") : undefined
+
     new Story({
       title,
       tagline,
-      tag,
-      genre,
+      tag : tagList,
+      genre : genreList,
       originalAuthorId,
       originalAuthorName,
       is_being_updated,

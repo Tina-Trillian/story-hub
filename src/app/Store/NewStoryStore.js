@@ -49,6 +49,15 @@ class NewStoryStore {
   @observable
   temp = "";
 
+  @observable
+  message = "";
+
+  @observable
+  error = "";
+
+  @observable
+  storySent = false;
+
   @action
   setAuthor(name, id) {
     this.originalAuthorName = name;
@@ -78,9 +87,18 @@ class NewStoryStore {
   //TODO creating new Story
   @action
   createNewStory() {
+    if(this.message === "") {
+
+    return new Promise((resolve, reject) => {
+
+    
+    if(!this.title || !this.tagline) {
+        this.error = "Please add a title and tagline!"
+        reject();
+      }
+    else {
     this.allGenre.forEach(el => {
       if (this.genreList[el] === true) this.genre.push(el);
-     
     });
     
     const story = {
@@ -94,47 +112,35 @@ class NewStoryStore {
       is_finished : this.is_finished,
       is_public : this.is_public,
       is_moderated: this.is_moderated,
-      picture: this.picture ? this.picture : undefined
     }
-    console.log(story)
+    this.message = "Loading Picture, please have patience"
+    const pictureDeclaration = { picture: this.picture };
+
+    api
+      .post(
+          `/api/stories/new`,
+          story,
+          pictureDeclaration
+        )
+        .then(data => {
+          this.message = ""
+          this.storySent = true
+          this.story = data
+          resolve(data)
+        })
+        .catch(err => {
+          this.message = ""
+          this.error = err.description;
+        });
+    }});
+  }
+  else {this.message = "Please wait till the picture is loaded";
+  return;}
+
+  //TODO Maybe return a Promise here as well, to get rid of error
   }
 
-//   @action
-//   createNewStory() {
-//     this.message = "Loading Picture, please have patience"
-//     //TODO may limit filesize later for profilePic
-//     return new Promise((resolve, reject) => {
-//       this.error = "";
-
-//       const pictureDeclaration = { picture: this.picture };
-
-//       api
-//         .post(
-//           `/api/auth/sign-${type}`,
-//           type === "in"
-//             ? { email: this.email, password: this.password }
-//             : {
-//                 email: this.email,
-//                 password: this.password,
-//                 description: this.description || "I'm still thinking about a good description. :)",
-//                 //TODO maybe there is a more elegant solution for that
-//                 username: this.username
-//               },
-//           pictureDeclaration
-//         )
-//         .then(data => {
-//           //Receives the User Token and stores it in the local Storage
-//           localStorage.setItem("identity", data.token);
-//           UserStore.setUser();
-//           this.message = ""
-//           resolve(data)
-//         })
-//         .catch(err => {
-//           this.message = ""
-//           this.error = err.description;
-//         });
-//     });
-//   }
+      
 
   @action
   getGenre() {

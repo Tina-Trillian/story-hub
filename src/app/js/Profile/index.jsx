@@ -7,7 +7,7 @@ import UserStore from '../../Store/UserStore'
 @observer
 class Profile extends Component {
     render() {
-        if (!UserStore) return <Redirect to="/auth/sign-in" /> // this is actually the protection
+        if (!UserStore._id) return <Redirect to="/auth/sign-in" /> // this is actually the protection
 
 
         return (
