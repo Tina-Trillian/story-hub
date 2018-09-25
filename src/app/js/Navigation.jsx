@@ -10,6 +10,7 @@ const Navigation = props => {
         <div className="navigation">
             <div className="container nav-content">
                 <div>
+                    <span className="logo">StoryHub</span>
                     <Link className="link nav-link" to="/">
                         Home
                     </Link>

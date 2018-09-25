@@ -33,10 +33,10 @@
     min-width: 250px;
     max-width: 100%;
 
-    &:focus {
-        border-color: $primary-color;
-        color: $primary-color;
-    }
+    // &:focus {
+    //     border-color: $primary-color;
+    //     color: $primary-color;
+    // }
 }
 
 .separator {
@@ -61,4 +61,20 @@
     &:hover {
         color: lighten($primary-color, 8%);
     }
+}
+
+.red {
+    border-color: red;
+}
+
+.green {
+    border-color: green;
+}
+
+.logo {
+    color: white;
+    font-size: 3em;
+    padding-right: 10px;
+    line-height: 5px;
+    font-family: 'Cedarville Cursive', cursive;
 }

@@ -164,9 +164,15 @@ router.post("/:id/add", (req, res) => {
   });
 });
 
-router.post("/:id/update", (req, res) => {
-  //TODO Should be called when the story is updated -> toggle is_being_updated
-});
+// router.post("/:id/update", (req, res) => {
+//   //TODO Should be called when the story is updated -> toggle is_being_updated
+// });
+
+router.patch("/:id/toggle", (req,res) => {
+  const {is_being_updated} = req.body
+  Story.findByIdAndUpdate(req.params.id, {is_being_updated}, {new: true})
+  .then(story => res.send(story))
+})
 
 //might not need the edit route, as the story is "edited" through the parts and character creation
 router.patch("/:id/edit", (req, res) => {
