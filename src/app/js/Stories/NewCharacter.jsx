@@ -19,10 +19,7 @@ class Character extends Component {
     NewCharStore.handleInputChange("authorName", UserStore.username)        
     NewCharStore.handleInputChange("authorId", UserStore._id)
     return (
-      <div className="container">
-        <h1>Form for character</h1>
-        <br />
-        <br />
+      <div className="container char-form my-4">
         <input
           name="name"
           onChange={evt =>
@@ -73,12 +70,16 @@ class Character extends Component {
           required={true}
         />
         <br />
-        {!NewCharStore.allFilled && <p>Please fill out all fields.</p>}
-        {NewCharStore.allFilled && <button className="button"
-        onClick={() => NewCharStore.pushButton().then(story => StoryStore.handleInputChange("adding_character", false))}>Add character</button>}
+        <button className={NewCharStore.allFilled ? "button my-3" : "button inactive my-3"}
+        onClick={() => {
+        this.props.toggle();
+        NewCharStore.pushButton()
+       }}>Add character</button>
         <button
-          className="button"
-          onClick={() => {StoryStore.handleInputChange("adding_character", false); NewCharStore.resetCharacter()}}
+          className="button ml-2 my-3"
+          onClick={() => {
+            this.props.toggle();
+            NewCharStore.resetCharacter()}}
         >
           Never Mind
         </button>

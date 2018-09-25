@@ -28,11 +28,10 @@ class NewPart extends Component {
         
           <button
             className={`${NewPartStore.content ? "btn" : "btn inactive"}`}
-            onClick={() =>
-              NewPartStore.pushButton().then(id => {
-                StoryStore.handleInputChange("adding_part", false);
-              })
-            }
+            onClick={() => {
+              this.props.toggle();
+              NewPartStore.pushButton()
+            }}
           >
             Add the part to the story
           </button>
@@ -40,9 +39,8 @@ class NewPart extends Component {
         <button
           className="btn"
           onClick={() => {
-            StoryStore.handleInputChange("adding_part", false);
             NewPartStore.resetPart();
-            StoryStore.toggleUpdate()}}
+            this.props.toggle()}}
         >
           Never Mind
         </button>

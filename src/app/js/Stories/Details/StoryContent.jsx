@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
 
+import {Modal} from 'reactstrap';
+
 import StoryStore from "../../../Store/StoryStore";
 import UserStore from "../../../Store/UserStore";
 import NewPart from "../NewPart"
@@ -13,8 +15,18 @@ class StoryContent extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+          modal: false
+        };
+        this.toggle = this.toggle.bind(this);
       }
 
+    toggle() {
+      StoryStore.toggleUpdate();
+        this.setState({
+          modal: !this.state.modal
+        });
+      }
   render() {
 
 
@@ -54,17 +66,14 @@ class StoryContent extends React.Component {
         {list}
         </div>
         </div>
-       
-   
 
-        {!StoryStore.adding_part && !StoryStore.story.is_being_updated ? <button className="btn btn-part my-4" onClick={() => {
-          StoryStore.handleInputChange("adding_part", true);
-          StoryStore.toggleUpdate()}}>Add a part to the story</button> : ""}
-        {StoryStore.adding_part && <NewPart />}
+         {!StoryStore.story.is_being_updated && <button className="btn btn-primary my-4" onClick={this.toggle}>Add a new part with modal</button>}
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <NewPart toggle={this.toggle}/>
+        </Modal>
         {StoryStore.story.is_being_updated &&
-          StoryStore.story.last_updated_by !== UserStore._id ? <h1>Being updated by abother user</h1> : ""}
-        {/* {StoryStore.story.is_being_updated &&
-          StoryStore.story.last_updated_by === UserStore._id ? <h1>Being updated by you</h1> : ""} */}
+          StoryStore.story.last_updated_by !== UserStore._id ? <h3>Another User is writing something ...</h3> : ""}
+ 
       </div>
     );
   }

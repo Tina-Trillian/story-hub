@@ -6,6 +6,8 @@ import { toJS} from "mobx"
 import api from "../utils/api"
 import StoryStore from "../../Store/StoryStore";
 
+import StoryCard from "./StoryCard"
+
 
 
 class List extends React.Component {
@@ -23,19 +25,16 @@ class List extends React.Component {
   render() {
 
     const list = StoryStore.stories.map((el,index) => {
-        return (
-        <div key={`story_${index}`}>
-        <Link to={`/stories/${el._id}`}>
-            <h2>{el.title}</h2> </Link>
-            <h3>{el.tagline}</h3>
-            </div>)
+        return  <StoryCard key={`story_${index}`} story={el} />
     })
 
     return (
       <div>
         <h1>Here are all the stories!</h1>
         <Link to="/stories/new"><button>Add a new Story here</button></Link>
+        <div className="stories-container">
         {list}
+        </div>
       </div>
     );
   }

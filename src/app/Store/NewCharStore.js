@@ -74,16 +74,13 @@ class NewCharStore {
 
     this.resetCharacter()
 
-    return new Promise((resolve, reject) => {
-      console.log("Pushed");
-
         api
           .post(`/api/stories/${char.story}/add`, char)
           .then(result => {
             StoryStore.getStoryById(result._id)
-            resolve(StoryStore.story)})
+            console.log("Hat geklappt?")
+            })
           .catch(err => console.log(err))
-    });
   }
 }
 

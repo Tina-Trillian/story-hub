@@ -38,7 +38,6 @@ class NewPartStore {
     this.authorName = UserStore.username;
     console.log("THIS",toJS(this));
 
-    return new Promise((resolve, reject) => {
       const part = {
         content: this.content,
         authorId: this.authorId,
@@ -50,19 +49,11 @@ class NewPartStore {
 
       api
         .post(`/api/stories/${part.story}/add`, part)
-        .then(result => {
-         return api.patch(`/api/stories/${result._id}/toggle`, {
-            is_being_updated: !StoryStore.story.is_being_updated,
-            last_updated_by: UserStore._id
-          })
-        })
         .then(
           result => {
             StoryStore.getStoryById(result._id)
-            resolve(StoryStore.story._id)
           })
         .catch(err => console.log(err));
-    });
   }
 }
 

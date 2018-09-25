@@ -155,11 +155,11 @@
         color: white;
         background-color: $primary-color;
     }
+}
 
-    .inactive {
-        background-color: rgb(77, 77, 77);
-        pointer-events: none;
-    }
+.inactive {
+    background-color: rgb(77, 77, 77);
+    pointer-events: none;
 }
 
 .info-container {
@@ -233,5 +233,31 @@
 @media (max-width: 991px) {
     .last {
         order: 13;
+    }
+}
+
+.char-form {
+    text-align: center;
+
+    input,textarea,select {
+        width: 90%;
+    }
+
+    textarea {
+        resize: none;
+        height: 30vh;
+    }
+    
+}
+
+.stories-container {
+    background-color: red;
+    display: flex;
+    flex-wrap: wrap;
+
+    .story-card {
+        background-color: green;
+        width: 40%;
+        margin: 10px;
     }
 }

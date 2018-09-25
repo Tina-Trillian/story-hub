@@ -11,13 +11,7 @@ class StoryStore {
   @observable
   story = {};
 
-  @observable
-  adding_character = false;
-
-  @observable
-  adding_part = false;
-
-
+  
   @action 
   getStoryById = (id) => {
       api.get(`/api/stories/${id}`).then(data => {
@@ -32,7 +26,6 @@ class StoryStore {
       .then(result => 
         this.getStoryById(result._id))
         .then(console.log(toJS(this.story)))
-      
   }
 
   @action
@@ -43,7 +36,6 @@ class StoryStore {
   @action
   setStories = () => {
     api.get('/api/stories/all').then(data => {
-
         this.stories = data.stories
     })
 }
