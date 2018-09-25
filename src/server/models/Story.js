@@ -76,6 +76,9 @@ const storySchema = new Schema({
   }, //Will later help, that not two persons are working on the same story
   //at the same time, will turn to true, while writing Part for the story
   //and will revert back to false, when Part is saved
+  last_updated_by: {
+    type: Schema.Types.ObjectId,
+  },
   is_finished: {
     type: Boolean,
     default: false,

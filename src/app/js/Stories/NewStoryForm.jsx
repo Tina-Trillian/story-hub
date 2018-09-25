@@ -22,7 +22,7 @@ class NewStoryForm extends React.Component {
 
   render() {
 
-    console.log(toJS(NewStoryStore))
+
 
     const tagList = NewStoryStore.tag.map((el, index) => {
       return <p key={`tag_${index}`}>{el}</p>;

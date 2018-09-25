@@ -9,8 +9,8 @@ class NewPart extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Add a New Part</h1>
+      <div className="story-container part-form">
+        <h2>Add a New Part</h2>
         <br />
         <br />
         <textarea
@@ -25,9 +25,9 @@ class NewPart extends Component {
         />
         <br />
         <br />
-        {NewPartStore.content && (
+        
           <button
-            className="button"
+            className={`${NewPartStore.content ? "btn" : "btn inactive"}`}
             onClick={() =>
               NewPartStore.pushButton().then(id => {
                 StoryStore.handleInputChange("adding_part", false);
@@ -36,9 +36,9 @@ class NewPart extends Component {
           >
             Add the part to the story
           </button>
-        )}
+        
         <button
-          className="button"
+          className="btn"
           onClick={() => {
             StoryStore.handleInputChange("adding_part", false);
             NewPartStore.resetPart();

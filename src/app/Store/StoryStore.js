@@ -1,6 +1,7 @@
 import { observable, action, toJS } from "mobx";
 import api from "../js/utils/api"
 
+import UserStore from "./UserStore"
 
 
 class StoryStore {
@@ -27,10 +28,11 @@ class StoryStore {
   @action
   toggleUpdate() {
       api.patch(`/api/stories/${this.story._id}/toggle`,
-      {is_being_updated: !this.story.is_being_updated})
+      {is_being_updated: !this.story.is_being_updated, last_updated_by: UserStore._id})
       .then(result => 
         this.getStoryById(result._id))
         .then(console.log(toJS(this.story)))
+      
   }
 
   @action

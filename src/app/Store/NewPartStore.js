@@ -36,7 +36,7 @@ class NewPartStore {
     this.story = StoryStore.story._id;
     this.authorId = UserStore._id;
     this.authorName = UserStore.username;
-    console.log(toJS(this));
+    console.log("THIS",toJS(this));
 
     return new Promise((resolve, reject) => {
       const part = {
@@ -51,20 +51,16 @@ class NewPartStore {
       api
         .post(`/api/stories/${part.story}/add`, part)
         .then(result => {
-          console.log("FIRST", result)
-         return api.patch(`/api/stories/${this.story._id}/toggle`, {
-            is_being_updated: !StoryStore.story.is_being_updated
+         return api.patch(`/api/stories/${result._id}/toggle`, {
+            is_being_updated: !StoryStore.story.is_being_updated,
+            last_updated_by: UserStore._id
           })
         })
         .then(
           result => {
-            console.log("Result", result)
-            StoryStore.getStoryById(result._id)}
-          // TODO toggle is_being_updated!!!
-        )
-        .then(story => {
-          resolve(story._id);
-        })
+            StoryStore.getStoryById(result._id)
+            resolve(StoryStore.story._id)
+          })
         .catch(err => console.log(err));
     });
   }

@@ -169,8 +169,8 @@ router.post("/:id/add", (req, res) => {
 // });
 
 router.patch("/:id/toggle", (req,res) => {
-  const {is_being_updated} = req.body
-  Story.findByIdAndUpdate(req.params.id, {is_being_updated}, {new: true})
+  const {is_being_updated, last_updated_by} = req.body
+  Story.findByIdAndUpdate(req.params.id, {is_being_updated, last_updated_by}, {new: true})
   .then(story => res.send(story))
 })
 

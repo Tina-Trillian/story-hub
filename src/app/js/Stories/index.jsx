@@ -7,7 +7,7 @@ import { observer } from 'mobx-react'
 
 import NotFound from '../NotFound'
 import List from './List'
-import Details from './Details';
+import Details from './Details/index';
 import NewStoryForm from './NewStoryForm';
 
 
