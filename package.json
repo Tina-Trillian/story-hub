@@ -9,14 +9,7 @@
     "dev": "concurrently -n app,server -c green,blue \"npm run dev:app\" \"npm run dev:server\"",
     "build": "parcel build src/app/index.html --out-dir src/server/public/app --public-url /app",
     "start": "NODE_ENV=production node src/server/index.js",
-    "heroku-postbuild": "npm run build",
-    "build-css": "node-sass-chokidar --include-path ./src/app/style --include-path ./node_modules src/app/style/ -o src/app/style/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src/styles --include-path ./node_modules src/app/style/ -o src/app/style --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "heroku-postbuild": "npm run build"
   },
   "engines": {
     "node": "8.12.0"
