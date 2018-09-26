@@ -27,12 +27,31 @@ class StoryStore {
     is_moderated: false
   };
 
+  @observable 
+  latest_new = []
+
+  @observable
+  latest_updated = []
+
   
   @action 
   getStoryById = (id) => {
       api.get(`/api/stories/${id}`).then(data => {
         this.story = data
       })
+  }
+
+  @action
+  getHomeStories() {
+    api.get("api/stories/three-latest")
+    .then(new_stories => {
+      this.latest_new = new_stories.stories
+
+      return api.get("api/stories/three-updated")
+    })
+    .then(updated_stories => {
+      this.latest_updated = updated_stories.stories
+    })
   }
 
   @action

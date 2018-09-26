@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom'
 import {observer} from "mobx-react"
 import { toJS} from "mobx"
 
+import {withRouter} from "react-router"
+
 import api from "../utils/api"
 import StoryStore from "../../Store/StoryStore";
 
 import StoryCard from "./StoryCard"
 import Search from "./Search"
+import NewStoryStore from "../../Store/NewStoryStore";
 
 
 
@@ -50,17 +53,20 @@ class List extends React.Component {
   componentDidMount() {
 
     StoryStore.setStories()
- 
+    this._handleSearchQuery("genre", this.props.match.params.filter)
+
   }
 
   render() {
 
-    // console.log(toJS(StoryStore.stories))
+    
+    const filter = !this.state.search.genre ? "No filter" : this.state.search.genre
+    console.log(filter)
 
     const list = StoryStore.stories
     .filter(story => story.title.toLowerCase().includes(this.state.search.query.toLowerCase()))
     .filter(story => story.length >= this.state.search.minWords)
-    .filter(story => this.state.search.genre === "No filter" || story.genre.indexOf(this.state.search.genre) > -1)
+    .filter(story => filter === "No filter" || story.genre.indexOf(this.state.search.genre) > -1)
     .map((el,index) => {
         return  <StoryCard key={`story_${index}`} story={el} />
     })
@@ -81,4 +87,4 @@ class List extends React.Component {
   }
 }
 
-export default observer(List);
+export default withRouter(observer(List));

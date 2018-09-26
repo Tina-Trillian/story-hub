@@ -19,8 +19,9 @@ class Stories extends React.Component {
         return (
                 <div>
                     <Switch>
-                        <Route exact path="/stories" component={List} />
-                        <Route exact path="/stories/new" component={NewStoryForm} />
+                        <Route exact path="/stories/all" component={List} />
+                        <Route exact path="/stories/all/:filter" component={List} />
+                        <Route exact path="/stories/new" component={NewStoryForm} />                      
                         <Route exact path="/stories/:id" component={Details} />
                         <Route component={NotFound} />
                     </Switch>

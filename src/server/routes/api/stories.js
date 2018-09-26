@@ -32,6 +32,31 @@ router.get("/all", (req, res) => {
 
   Story.find({})
   .populate("content")
+  .sort({"created_at": -1})
+  .then(stories => {
+    res.send({ stories });
+  });
+});
+
+router.get("/three-latest", (req, res) => {
+  //will get three stories that are in the database
+
+  Story.find({})
+  .populate("content")
+  .sort({"created_at": -1})
+  .limit(3)
+  .then(stories => {
+    res.send({ stories });
+  });
+});
+
+router.get("/three-updated", (req, res) => {
+  //will get three stories that are in the database
+
+  Story.find({})
+  .populate("content")
+  .sort({"updated_at": -1})
+  .limit(3)
   .then(stories => {
     res.send({ stories });
   });

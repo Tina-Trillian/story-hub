@@ -48,16 +48,18 @@ class StoryContent extends React.Component {
       const image = story.picture;
       const genre = story.genre.map((el, index) => {
         return (
-          <button className="btn my-3 mx-2 btn-genre" key={`gen_${index}`}>
+          <Link to={`/stories/all/${el}`} key={`gen_${index}`}> <button className="btn my-3 mx-2 btn-genre">
             {el}
           </button>
+          </Link>
         );
       });
       const tags = story.tag.map((el, index) => {
         return (
-          <button className="btn my-3 mx-2 btn-tag" key={`tag_${index}`}>
+          <Link to={"/stories/all"} key={`tag_${index}`}><button className="btn my-3 mx-2 btn-tag">
             {el}
           </button>
+          </Link>
         );
       });
     

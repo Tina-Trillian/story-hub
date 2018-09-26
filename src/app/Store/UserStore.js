@@ -65,8 +65,8 @@ class UserStore {
         this.profilePicture = ""
         this.description = ""
         this.username = ""
-        this.stories = ""
-        this.parts = ""
+        this.stories = []
+        this.parts = []
     }
 }
 
