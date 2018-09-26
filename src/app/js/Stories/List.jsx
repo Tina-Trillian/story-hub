@@ -17,18 +17,32 @@ class List extends React.Component {
 
     this.state = {
       search: {
-        query: ""
+        query: "",
+        minWords: 0,
+        genre: "No filter"
       }
     }
 
     this._handleSearchQuery = this._handleSearchQuery.bind(this)
-
+    this._resetSearchQuery = this._resetSearchQuery.bind(this)
   }
 
   _handleSearchQuery(key, newValue) {
+    if (newValue < 0) newValue = 0
+
     this.setState({
       search: {
-        [key]: newValue
+        ...this.state.search, [key] : newValue
+      }
+    })
+  }
+
+  _resetSearchQuery() {
+    this.setState({
+      search: {
+        query: "",
+        minWords: 0,
+        genre: "No filter"
       }
     })
   }
@@ -41,8 +55,12 @@ class List extends React.Component {
 
   render() {
 
+    // console.log(toJS(StoryStore.stories))
+
     const list = StoryStore.stories
     .filter(story => story.title.toLowerCase().includes(this.state.search.query.toLowerCase()))
+    .filter(story => story.length >= this.state.search.minWords)
+    .filter(story => this.state.search.genre === "No filter" || story.genre.indexOf(this.state.search.genre) > -1)
     .map((el,index) => {
         return  <StoryCard key={`story_${index}`} story={el} />
     })
@@ -50,7 +68,10 @@ class List extends React.Component {
     return (
       <div>
         <h1>Here are all the stories!</h1>
-        <Search handleSearchQuery={this._handleSearchQuery} search={this.state.search} />
+        <Search
+        handleSearchQuery={this._handleSearchQuery}
+        search={this.state.search}
+        resetSearchQuery={this._resetSearchQuery} />
         <Link to="/stories/new"><button>Add a new Story here</button></Link>
         <div className="stories-container">
         {list}
