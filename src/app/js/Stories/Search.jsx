@@ -50,6 +50,18 @@ class Search extends React.Component  {
           {list}
         </Input>
         <br />
+        <Input
+        type="select"
+        name="select"
+        onChange={evt => handleSearchQuery("sort", evt.target.value)}
+        value={search.sort}
+        >
+        <option>Date Posted</option>
+        <option>Date Updated</option>
+        <option>Word Count</option>
+        <option>Title</option>
+        </Input>
+        <br />
         <button
         onClick={() => resetSearchQuery()}>Reset</button>
       </div>

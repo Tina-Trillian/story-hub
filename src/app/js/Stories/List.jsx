@@ -22,7 +22,8 @@ class List extends React.Component {
       search: {
         query: "",
         minWords: 0,
-        genre: "No filter"
+        genre: "No filter",
+        sort: ""
       }
     }
 
@@ -45,7 +46,8 @@ class List extends React.Component {
       search: {
         query: "",
         minWords: 0,
-        genre: "No filter"
+        genre: "No filter",
+        sort: ""
       }
     })
   }
@@ -53,20 +55,18 @@ class List extends React.Component {
   componentDidMount() {
 
     StoryStore.setStories()
-    this._handleSearchQuery("genre", this.props.match.params.filter)
+    this._handleSearchQuery("genre", !this.props.match.params.filter ? "No filter" : this.props.match.params.filter)
 
   }
 
   render() {
 
-    
-    const filter = !this.state.search.genre ? "No filter" : this.state.search.genre
-    console.log(filter)
 
     const list = StoryStore.stories
+    // .sort((a,b) => a.length < b.length)
     .filter(story => story.title.toLowerCase().includes(this.state.search.query.toLowerCase()))
     .filter(story => story.length >= this.state.search.minWords)
-    .filter(story => filter === "No filter" || story.genre.indexOf(this.state.search.genre) > -1)
+    .filter(story => this.state.search.genre === "No filter" || story.genre.indexOf(this.state.search.genre) > -1)
     .map((el,index) => {
         return  <StoryCard key={`story_${index}`} story={el} />
     })

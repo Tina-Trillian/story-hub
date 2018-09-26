@@ -5,8 +5,9 @@ import { observer } from 'mobx-react'
 
 
 import Auth from './Auth'
-import Home from './Home'
+import Home from './Home/Home'
 import Navigation from './Navigation'
+import Footer from './Footer'
 import ProfilePublic from './Public/ProfilePublic'
 
 import Stories from './Stories'
@@ -33,6 +34,7 @@ class Application extends React.Component {
                         <Route path="/auth" component={Auth} />
                         <Route component={NotFound} />
                     </Switch>
+                    <Footer />
                 </div>
             </BrowserRouter>
         )
