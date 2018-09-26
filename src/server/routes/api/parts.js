@@ -41,7 +41,7 @@ router.get("/:id", (req, res) => {
 
 //Finds the Part for the id and deletes the part AND all traces
 //in the user and story objects
-router.delete("/:id", (req, res) => {
+router.delete("/:id", checkLoggedIn, (req, res) => {
     Part.findByIdAndRemove(req.params.id)
     .then(part => {
       
@@ -79,7 +79,7 @@ router.delete("/:id", (req, res) => {
 
 
 //might not need the edit route
-router.patch("/:id/edit", (req, res) => {
+router.patch("/:id/edit", checkLoggedIn, (req, res) => {
   res.send({
     message: `The part with the id: ${req.params.id} will be edited!`
   });

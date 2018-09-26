@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import { Redirect } from "react-router"
 
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
@@ -16,12 +17,14 @@ class NewStoryForm extends React.Component {
   componentDidMount() {
     NewStoryStore.resetNewStory();
     NewStoryStore.getGenre();
-    UserStore.setUser();
     NewStoryStore.setAuthor(UserStore.username, UserStore._id);
   }
 
   render() {
 
+    UserStore.setUser();
+    if (!UserStore._id) return <Redirect to="/auth/sign-in" /> // this is actually the protection
+   
 
 
     const tagList = NewStoryStore.tag.map((el, index) => {

@@ -29,7 +29,7 @@ class NewPart extends Component {
           <button
             className={`${NewPartStore.content ? "btn" : "btn inactive"}`}
             onClick={() => {
-              this.props.toggle();
+              this.props.toggle(false);
               NewPartStore.pushButton()
             }}
           >
@@ -40,7 +40,7 @@ class NewPart extends Component {
           className="btn"
           onClick={() => {
             NewPartStore.resetPart();
-            this.props.toggle()}}
+            this.props.toggle(false)}}
         >
           Never Mind
         </button>

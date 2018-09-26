@@ -80,7 +80,7 @@ router.get("/:id/parts", (req, res) => {
 })
 
 //might not need the edit route
-router.patch("/:id/edit", (req, res) => {
+router.patch("/:id/edit", checkLoggedIn, (req, res) => {
   res.send({
     message: `The User with the id: ${req.params.id} will be edited!`
   });

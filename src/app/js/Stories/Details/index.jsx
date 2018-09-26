@@ -23,6 +23,7 @@ class Details extends React.Component {
     //   console.log("Hello")
     //   StoryStore.getStoryById(this.props.match.params.id)
     // }, 1000)
+  
   }
 
   render() {

@@ -18,7 +18,7 @@ class ProfilePublic extends Component {
     render() {
 
         const stories = ProfileStore.stories.map((el, index) => {
-        return <li key={`stor_${index}`}>{el.title}</li>})
+        return <li key={`stor_${index}`}><Link to={`/stories/${el._id}`}>{el.title}</Link></li>})
 
         const parts = ProfileStore.parts.map((el, index) => {
             return <li key={`part_${index}`}><Link to={`/stories/${el.story._id}`}>{el.story.title}</Link></li>

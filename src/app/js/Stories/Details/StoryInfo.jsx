@@ -45,7 +45,7 @@ class Details extends React.Component {
       originalAuthor = <Link to={`/profile/${story.originalAuthorId._id}`}><button className="btn my-3">{story.originalAuthorId.username}</button></Link>
       }
 
-      console.log(toJS(story))
+      if (!contributors || !characters || !originalAuthor) return ""
 
     return (
       <div className="info-container">
