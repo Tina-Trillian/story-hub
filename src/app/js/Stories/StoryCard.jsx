@@ -28,6 +28,7 @@ const StoryCard = ({ story }) => {
       <div className="story-card">
         <h3>{story.title}</h3>
         <h4>{story.tagline}</h4>
+        <p>words: {story.length}</p>
       </div>
     </Link>
   );

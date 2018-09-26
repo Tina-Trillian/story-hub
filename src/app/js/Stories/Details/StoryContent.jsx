@@ -37,9 +37,8 @@ class StoryContent extends React.Component {
     }
 
     const story = StoryStore.story;
-    let list, image, genre, tags;
-    if (story.content) {
-      list = story.content.map((el, index) => {
+
+     const list = story.content.map((el, index) => {
         return (
           <React.Fragment key={`para_${index}`}>
             <p>{el.content}</p>
@@ -47,25 +46,27 @@ class StoryContent extends React.Component {
           </React.Fragment>
         );
       });
-      image = story.picture;
-      genre = story.genre.map((el, index) => {
+      const image = story.picture;
+      const genre = story.genre.map((el, index) => {
         return (
           <button className="btn my-3 mx-2 btn-genre" key={`gen_${index}`}>
             {el}
           </button>
         );
       });
-      tags = story.tag.map((el, index) => {
+      const tags = story.tag.map((el, index) => {
         return (
           <button className="btn my-3 mx-2 btn-tag" key={`tag_${index}`}>
             {el}
           </button>
         );
       });
-    }
+    
 
     if (!tags || !genre || !image || !list) return <p>Loading ....</p>
     //TODO maybe later a loading spinner
+
+   
 
     return (
       <div>
@@ -86,11 +87,12 @@ class StoryContent extends React.Component {
           {genre}
           {tags}
         </div>
-        <div className="story-container">
+        
+        {list.length > 0 && <div className="story-container">
           <div className="story-text py-3">{list}</div>
-        </div>
-
-        {!StoryStore.story.is_being_updated ||
+        </div>}
+        {!StoryStore.story.is_being_updated &&
+        UserStore._id ||
         (StoryStore.story.is_being_updated &&
           UserStore._id === StoryStore.story.last_updated_by) ? (
           <button
@@ -100,7 +102,7 @@ class StoryContent extends React.Component {
             Add a new part with modal
           </button>
         ) : (
-          ""
+          <p>Want to contribute? Why not <Link to="/auth/sign-up">sign-up?</Link></p>
         )}
         {/* Failsafe if the toggle/updating is not working */}
         {/* {StoryStore.story.is_being_updated &&

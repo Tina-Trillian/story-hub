@@ -9,7 +9,23 @@ class StoryStore {
   stories = [];
 
   @observable
-  story = {};
+  story = {
+    title : "",
+    originalAuthorId : "",
+    originalAuthorName: "",
+    contributors: [],
+    tagline: "",
+    content: [],
+    tag: [],
+    genre: [],
+    picture: "",
+    characters: [],
+    is_being_updated: false,
+    last_updated_by: "",
+    is_finished: false,
+    is_public: true,
+    is_moderated: false
+  };
 
   
   @action 
@@ -38,11 +54,14 @@ class StoryStore {
     api.get('/api/stories/all').then(data => {
         this.stories = data.stories
         
-        const clean = this.stories.map(story => {
-          let sum = 0;
+        this.stories.map(story => {
+          let allwords = ""
           story.content.forEach(part => {
-            console.log(part.content)
+            allwords += " " + part.content
         })
+        story.allWords = allwords
+        let arr = story.allWords.split(" ").filter(el => el.length > 0)
+        story.length = arr.length
     })
   })
   }

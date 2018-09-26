@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 
 import NewPartStore from "../../Store/NewPartStore";
-import StoryStore from "../../Store/StoryStore";
+
 
 class NewPart extends Component {
   componentDidMount() {}
