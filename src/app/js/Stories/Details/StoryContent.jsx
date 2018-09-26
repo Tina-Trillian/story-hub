@@ -26,6 +26,7 @@ class StoryContent extends React.Component {
       modal: !this.state.modal
     });
   }
+
   render() {
 
     if (StoryStore.story.is_being_updated &&
