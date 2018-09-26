@@ -7,8 +7,8 @@ import { observer } from 'mobx-react'
 
 import NotFound from '../NotFound'
 import List from './List'
-import Details from './Details';
-import NewStory from './NewStoy/index';
+import Details from './Details/index';
+import NewStoryForm from './NewStoryForm';
 
 
 
@@ -17,16 +17,14 @@ class Stories extends React.Component {
   
     render() {
         return (
-            <BrowserRouter>
                 <div>
                     <Switch>
                         <Route exact path="/stories" component={List} />
-                        <Route exact path="/stories/new" component={NewStory} />
+                        <Route exact path="/stories/new" component={NewStoryForm} />
                         <Route exact path="/stories/:id" component={Details} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
-            </BrowserRouter>
         )
     }
 }

@@ -4,8 +4,6 @@ import api from "../js/utils/api";
 import UserStore from "./UserStore";
 
 class NewStoryStore {
-  @observable
-  story = {};
 
   @observable
   title = "";
@@ -35,7 +33,7 @@ class NewStoryStore {
   picture = undefined;
 
   @observable
-  is_being_updated = true;
+  is_being_updated = false;
 
   @observable
   is_public = true;
@@ -50,13 +48,10 @@ class NewStoryStore {
   temp = "";
 
   @observable
-  message = "";
+  loading = false;
 
   @observable
   error = "";
-
-  @observable
-  storySent = false;
 
   @action
   setAuthor(name, id) {
@@ -87,16 +82,9 @@ class NewStoryStore {
   //TODO creating new Story
   @action
   createNewStory() {
-    if(this.message === "") {
-
+   
     return new Promise((resolve, reject) => {
-
     
-    if(!this.title || !this.tagline) {
-        this.error = "Please add a title and tagline!"
-        reject();
-      }
-    else {
     this.allGenre.forEach(el => {
       if (this.genreList[el] === true) this.genre.push(el);
     });
@@ -113,8 +101,9 @@ class NewStoryStore {
       is_public : this.is_public,
       is_moderated: this.is_moderated,
     }
-    this.message = "Loading Picture, please have patience"
+    //TODO display a loading gif here!!!!
     const pictureDeclaration = { picture: this.picture };
+    if(this.picture) {this.loading = true}
 
     api
       .post(
@@ -123,23 +112,36 @@ class NewStoryStore {
           pictureDeclaration
         )
         .then(data => {
-          this.message = ""
-          this.storySent = true
-          this.story = data
+          this.loading = false
           resolve(data)
         })
         .catch(err => {
           this.message = ""
           this.error = err.description;
         });
-    }});
-  }
-  else {this.message = "Please wait till the picture is loaded";
-  return;}
+    });
 
   //TODO Maybe return a Promise here as well, to get rid of error
   }
 
+  @action
+  resetNewStory() {
+   
+  this.title = "";
+  this.tagline = "";
+  this.originalAuthorId = "";
+  this.originalAuthorName = "";
+  this.tag = [];
+  this.allGenre = [];
+  this.genre = [];
+  this.genreList = {};
+  this.picture = undefined;
+  this.is_public = true;
+  this.is_moderated = false;
+  this.temp = "";
+  this.loading = false;
+  this.error = "";
+  }
       
 
   @action

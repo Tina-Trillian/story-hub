@@ -3,20 +3,17 @@ import jwtDecode from "jwt-decode";
 import api from "../js/utils/api";
 
 import UserStore from "./UserStore";
-import NewStoryStore from "./NewStoryStore";
+import StoryStore from "./StoryStore";
 
 class NewPartStore {
   @observable
   content = "";
 
   @observable
-  error = "";
+  authorId = "";
 
   @observable
-  authorId = UserStore._id;
-
-  @observable
-  authorName = UserStore.username;
+  authorName = "";
 
   @observable
   story = "";
@@ -27,23 +24,36 @@ class NewPartStore {
   }
 
   @action
-  pushButton() {
-    if (!this.content) {
-      this.error = "Please write something";
-      return;
-    } else {
-      this.story = NewStoryStore.story._id;
-      
-      const part = {
-          content : this.content,
-          authorId : this.authorId,
-          authorName : this.authorName,
-          story : this.story,
-      }
+  resetPart() {
+    this.content = "";
+    this.authorId = "";
+    this.authorName = "";
+    this.story = "";
+  }
 
-      api.post(`api/stories/${part.story}/add`)
-      .then(result => console.log(result))
-    }
+  @action
+  pushButton() {
+    this.story = StoryStore.story._id;
+    this.authorId = UserStore._id;
+    this.authorName = UserStore.username;
+    console.log("THIS",toJS(this));
+
+      const part = {
+        content: this.content,
+        authorId: this.authorId,
+        authorName: this.authorName,
+        story: this.story
+      };
+
+      this.resetPart();
+
+      api
+        .post(`/api/stories/${part.story}/add`, part)
+        .then(
+          result => {
+            StoryStore.getStoryById(result._id)
+          })
+        .catch(err => console.log(err));
   }
 }
 

@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { Redirect } from "react-router"
 
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
-import NewStoryStore from "../../../Store/NewStoryStore";
-import UserStore from "../../../Store/UserStore";
+import NewStoryStore from "../../Store/NewStoryStore";
+import UserStore from "../../Store/UserStore";
 
 
 
@@ -14,12 +15,18 @@ class NewStoryForm extends React.Component {
   }
 
   componentDidMount() {
+    NewStoryStore.resetNewStory();
     NewStoryStore.getGenre();
-    UserStore.setUser();
     NewStoryStore.setAuthor(UserStore.username, UserStore._id);
   }
 
   render() {
+
+    UserStore.setUser();
+    if (!UserStore._id) return <Redirect to="/auth/sign-in" /> // this is actually the protection
+   
+
+
     const tagList = NewStoryStore.tag.map((el, index) => {
       return <p key={`tag_${index}`}>{el}</p>;
     });
@@ -135,13 +142,12 @@ class NewStoryForm extends React.Component {
         />
         <br />
         <br />
-        <button onClick={() => NewStoryStore.createNewStory()
-        .then(result => {console.log("FRONTEND")})}>
+        {!NewStoryStore.title || !NewStoryStore.tagline ? <p>Please add a title and a tagline!</p> : ""}
+        {!NewStoryStore.loading && NewStoryStore.title && NewStoryStore.tagline ? <button onClick={() => NewStoryStore.createNewStory()
+        .then(result => {this.props.history.push(`/stories/${result._id}`)})}>
           Create your story and write the first Part!
-        </button>
-        <br />
-        <br />
-        <p>{NewStoryStore.message}</p>
+        </button> : ""}
+        {NewStoryStore.loading && <p>Loading picture, have patience</p>}
         <br />
         <br />
         <p>{NewStoryStore.error}</p>
@@ -150,4 +156,4 @@ class NewStoryForm extends React.Component {
   }
 }
 
-export default observer(NewStoryForm);
+export default withRouter(observer(NewStoryForm));

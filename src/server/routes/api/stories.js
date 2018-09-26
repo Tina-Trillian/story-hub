@@ -31,6 +31,7 @@ router.get("/all", (req, res) => {
   //will get all stories that are in the database
 
   Story.find({})
+  .populate("content")
   .then(stories => {
     res.send({ stories });
   });
@@ -85,7 +86,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", checkLoggedIn, (req, res) => {
   //will find the Story with the right Id in the URL and delete it
 
   Story.findByIdAndRemove(req.params.id).then(deletedStory => {
@@ -96,7 +97,7 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-router.post("/:id/add", (req, res) => {
+router.post("/:id/add", checkLoggedIn, (req, res) => {
   //should be called when a Part or Character is ADDED to a story
 
   Story.findById(req.params.id).then(story => {
@@ -164,18 +165,24 @@ router.post("/:id/add", (req, res) => {
   });
 });
 
-router.post("/:id/update", (req, res) => {
-  //TODO Should be called when the story is updated -> toggle is_being_updated
-});
+// router.post("/:id/update", (req, res) => {
+//   //TODO Should be called when the story is updated -> toggle is_being_updated
+// });
+
+router.patch("/:id/toggle", checkLoggedIn, (req,res) => {
+  const {is_being_updated, last_updated_by} = req.body
+  Story.findByIdAndUpdate(req.params.id, {is_being_updated, last_updated_by}, {new: true})
+  .then(story => res.send(story))
+})
 
 //might not need the edit route, as the story is "edited" through the parts and character creation
-router.patch("/:id/edit", (req, res) => {
+router.patch("/:id/edit", checkLoggedIn, (req, res) => {
   res.send({
     message: `The story with the id: ${req.params.id} will be edited!`
   });
 });
 
-router.post("/new", (req, res) => {
+router.post("/new", checkLoggedIn, (req, res) => {
 
 
   if (req.files)

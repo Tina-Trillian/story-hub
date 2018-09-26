@@ -1,47 +1,76 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
 import { observer } from 'mobx-react'
 
 import UserStore from '../Store/UserStore'
 
-const Navigation = props => {
+import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from 'reactstrap';
+
+ class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  render() {
+      console.log(UserStore.username)
     return (
-        <div className="navigation">
-            <div className="container nav-content">
-                <div>
-                    <Link className="link nav-link" to="/">
-                        Home
-                    </Link>
-                    {UserStore._id && (
-                        <span>
-                            &nbsp; &nbsp; &nbsp;
-                            <Link className="link nav-link" to="/profile">
-                                Profile
-                            </Link>
-                        </span>
-                    )}
-                </div>
-                <div>
-                    {UserStore._id ? (
-                        <Link className="link nav-link" to="/auth/logout">
-                            Logout
-                        </Link>
-                    ) : (
-                        <span>
-                            <Link className="link nav-link" to="/auth/sign-in">
-                                Sign in
-                            </Link>
-                            &nbsp; &nbsp; &nbsp;
-                            <Link className="link nav-link" to="/auth/sign-up">
-                                Sign up
-                            </Link>
-                        </span>
-                    )}
-                </div>
-            </div>
-        </div>
-    )
+      <div>
+        <Navbar dark color="dark" expand="md" className="redb">
+          <NavbarBrand href="/" className="logo">StoryHub</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          {!UserStore._id && (
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/stories">All Stories</NavLink>
+              </NavItem> 
+              <NavItem>
+                <NavLink href={`/auth/sign-in`}>Sign In</NavLink>
+            </NavItem> 
+            <NavItem>
+                <NavLink href={`/auth/sign-up`}>Sign Up</NavLink>
+            </NavItem> 
+            </Nav>
+          </Collapse>
+          )}
+          {UserStore._id && (
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+            <NavItem>
+                <NavLink href={`/profile/${UserStore._id}`}>My Profile</NavLink>
+              </NavItem> 
+              <NavItem>
+                <NavLink href="/stories">All Stories</NavLink>
+              </NavItem> 
+              <NavItem>
+                <NavLink href={`/stories/new`}>Add a story</NavLink>
+            </NavItem> 
+            <NavItem>
+                <NavLink href={`/auth/logout`}>Log out</NavLink>
+            </NavItem> 
+            </Nav>
+          </Collapse>
+          )}
+        </Navbar>
+      </div>
+    );
+  }
 }
 
 export default observer(Navigation)

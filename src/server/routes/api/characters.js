@@ -36,7 +36,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", checkLoggedIn, (req, res) => {
  //will find the Character with the right Id in the URL and delete it
  
   Character.findByIdAndRemove(req.params.id).then(deletedCharacter => {
@@ -58,7 +58,7 @@ router.delete("/:id", (req, res) => {
 });
 
 //might not need the edit route
-router.patch("/:id/edit", (req, res) => {
+router.patch("/:id/edit", checkLoggedIn, (req, res) => {
   res.send({
     message: `The part with the id: ${req.params.id} will be edited!`
   });
