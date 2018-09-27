@@ -12,6 +12,7 @@
 
 body {
     margin: 0;
+    
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: $text-color;
@@ -41,5 +42,13 @@ body {
         background-color: $primary-color
     }
 
+  
+
+}
+
+.non-footer {
+    min-height: 100vh;
+    // margin-bottom: -50px;
+  
 }
 

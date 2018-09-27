@@ -515,9 +515,6 @@
 }
 }
 
-.full-page {
-    height: 72vh;
-}
 
 .toggle-button {
     position: fixed;
@@ -534,8 +531,12 @@
 }
 
 .page-footer {
+    height: 50px;
     color: $white;
-    background-color: $text-color
+    background-color: $text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .info-bar-top {
