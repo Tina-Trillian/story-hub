@@ -7,6 +7,8 @@ import { toJS } from "mobx";
 import NewStoryStore from "../../Store/NewStoryStore";
 import UserStore from "../../Store/UserStore";
 
+import gif from "../../assets/Eclipse-1s-200px (1).gif"
+
 
 
 class NewStoryForm extends React.Component {
@@ -150,7 +152,7 @@ class NewStoryForm extends React.Component {
         .then(result => {this.props.history.push(`/stories/${result._id}`)})}>
           Create your story and write the first Part!
         </button> : ""}
-        {NewStoryStore.loading && <p>Loading picture, have patience</p>}
+        {NewStoryStore.loading && <img src={gif} />}
         <br />
         <br />
         <p>{NewStoryStore.error}</p>

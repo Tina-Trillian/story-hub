@@ -76,7 +76,6 @@ class NewStoryStore {
     this.tag.push(this.temp);
     this.temp = "";
     }
-    console.log(toJS(this.tag))
   }
 
   //TODO creating new Story
@@ -101,7 +100,6 @@ class NewStoryStore {
       is_public : this.is_public,
       is_moderated: this.is_moderated,
     }
-    //TODO display a loading gif here!!!!
     const pictureDeclaration = { picture: this.picture };
     if(this.picture) {this.loading = true}
 

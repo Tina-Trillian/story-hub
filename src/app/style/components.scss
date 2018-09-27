@@ -69,6 +69,7 @@
   outline: none;
 }
 
+
 .link {
   color: $primary-color;
   text-decoration: none;
@@ -80,7 +81,7 @@
   }
 
   &:hover {
-    color: lighten($primary-color, 8%);
+    color: lighten($primary-color, 20%);
     
   }
 }
@@ -359,13 +360,13 @@
   }
   
   .carousel-item:nth-child(1) {
-    background-color: red;
+    background-color: $text-color;
   }
   .carousel-item:nth-child(2) {
-    background-color: blue;
+    background-color: $text-color;
   }
   .carousel-item:nth-child(3) {
-    background-color: yellow;
+    background-color: $text-color;
   }
 
   .carousel-content {
@@ -434,6 +435,8 @@
 
     hr {
         width: 70%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .story-card-home {
@@ -636,6 +639,10 @@
 
         .link {
             color: $white;
+        }
+
+        .link:hover {
+            color: darken($white, 15%)
         }
     }
 

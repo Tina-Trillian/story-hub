@@ -10,6 +10,7 @@ import { Modal } from "reactstrap";
 import StoryStore from "../../../Store/StoryStore";
 import UserStore from "../../../Store/UserStore";
 import NewPart from "../NewPart";
+import gif from "../../../assets/Eclipse-1s-200px (1).gif"
 
 class StoryContent extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class StoryContent extends React.Component {
       StoryStore.story.last_updated_by === UserStore._id &&
       !this.state.modal
     ) {
-      console.log("Helloooo");
+      
       StoryStore.toggleUpdate(false);
     }
 
@@ -63,7 +64,7 @@ class StoryContent extends React.Component {
       );
     });
 
-    if (!tags || !genre || !image || !list) return <p>Loading ....</p>;
+    if (!tags || !genre || !image || !list) return <img src={gif} />;
     //TODO maybe later a loading spinner
 
     return (
@@ -90,7 +91,10 @@ class StoryContent extends React.Component {
 
         {list.length > 0 && (
           <div className="story-container">
-            <div className="story-text py-3">{list}</div>
+            <div className="story-text py-3">
+            <hr/>
+            {list}
+            <hr/></div>
           </div>
         )}
         {(!StoryStore.story.is_being_updated && UserStore._id) ||

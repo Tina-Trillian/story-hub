@@ -31,6 +31,8 @@ class Details extends React.Component {
   render() {
     const story = StoryStore.story;
 
+   
+
     const contributors = story.contributors.map((el, index) => {
       return (
         <Link to={`/profile/${el._id}`} key={`cont_${index}`}>
@@ -39,8 +41,8 @@ class Details extends React.Component {
       );
     });
     const characters = story.characters.map((el, index) => {
-      return <React.Fragment>
-        <CharacterCard key={`char_${index}`} character={el} />
+      return <React.Fragment key={`char_${index}`}>
+        <CharacterCard character={el} />
         <hr/>
         </React.Fragment>
     });
@@ -51,6 +53,8 @@ class Details extends React.Component {
     );
 
     if (!contributors || !characters || !originalAuthor) return "";
+
+    
 
     return (
       <div className="info-container">

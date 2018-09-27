@@ -49,7 +49,8 @@ class UserStore {
                 return api.get(`/api/users/${decoded._id}/parts`)
             }).then(parts => {
                 this.parts = parts
-            }).then(result => console.log("User Set"))
+            })
+            // .then(result => console.log("User Set"))
         
         }
 
@@ -59,7 +60,6 @@ class UserStore {
 
     @action
     resetUser = () => {
-        console.log("Log Out")
         this._id = ""
         this.email = ""
         this.profilePicture = ""

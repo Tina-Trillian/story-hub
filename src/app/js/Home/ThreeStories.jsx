@@ -13,7 +13,6 @@ const ThreeStories = ({stories, title, text, background_card, background_all}) =
     background_card={background_card} />;
   });
 
-  console.log(background_all)
 
   return (
     <div className={`three-stories`} style={{backgroundColor: background_all}}>

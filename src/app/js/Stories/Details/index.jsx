@@ -26,7 +26,6 @@ class Details extends React.Component {
   componentDidMount() {
     StoryStore.getStoryById(this.props.match.params.id);
     // const interval = setInterval(() => {
-    //   console.log("Hello")
     //   StoryStore.getStoryById(this.props.match.params.id)
     // }, 2000)
   }
@@ -46,9 +45,9 @@ class Details extends React.Component {
       <div>
       <div className="row mx-0">
       {/* <button
-      onClick={() => console.log("Hello")}
+      onClick={}
       className="button toggle-button">See more</button> */}
-      {this.state.toggle && <div className="col-12 col-lg-3 last test">
+      {this.state.toggle && <div className="col-12 col-lg-3 last test px-0">
           <StoryInfo />
         </div>}
       <div className="col-12 col-lg-9 text-center test">

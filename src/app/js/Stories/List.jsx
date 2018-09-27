@@ -76,6 +76,8 @@ class List extends React.Component {
         background_card="#987284" />
     })
 
+    
+
     return (
       <div>
         <Search
