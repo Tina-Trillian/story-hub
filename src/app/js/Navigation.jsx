@@ -38,7 +38,7 @@ import {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/stories">All Stories</NavLink>
+                <NavLink href="/stories/all">All Stories</NavLink>
               </NavItem> 
               <NavItem>
                 <NavLink href={`/auth/sign-in`}>Sign In</NavLink>
@@ -56,7 +56,7 @@ import {
                 <NavLink href={`/profile/${UserStore._id}`}>My Profile</NavLink>
               </NavItem> 
               <NavItem>
-                <NavLink href="/stories">All Stories</NavLink>
+                <NavLink href="/stories/all">All Stories</NavLink>
               </NavItem> 
               <NavItem>
                 <NavLink href={`/stories/new`}>Add a story</NavLink>

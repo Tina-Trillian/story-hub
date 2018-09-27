@@ -28,71 +28,73 @@ class StoryContent extends React.Component {
   }
 
   render() {
-
-    if (StoryStore.story.is_being_updated &&
+    if (
+      StoryStore.story.is_being_updated &&
       StoryStore.story.last_updated_by === UserStore._id &&
-      !this.state.modal) {
-      console.log("Helloooo")
-      StoryStore.toggleUpdate(false)
+      !this.state.modal
+    ) {
+      console.log("Helloooo");
+      StoryStore.toggleUpdate(false);
     }
 
     const story = StoryStore.story;
 
-     const list = story.content.map((el, index) => {
-        return (
-          <React.Fragment key={`para_${index}`}>
-            <p>{el.content}</p>
-            {index < story.content.length - 1 && <hr />}
-          </React.Fragment>
-        );
-      });
-      const image = story.picture;
-      const genre = story.genre.map((el, index) => {
-        return (
-          <button className="btn my-3 mx-2 btn-genre" key={`gen_${index}`}>
-            {el}
-          </button>
-        );
-      });
-      const tags = story.tag.map((el, index) => {
-        return (
-          <button className="btn my-3 mx-2 btn-tag" key={`tag_${index}`}>
-            {el}
-          </button>
-        );
-      });
-    
+    const list = story.content.map((el, index) => {
+      return (
+        <React.Fragment key={`para_${index}`}>
+          <p>{el.content}</p>
+          {index < story.content.length - 1 && <hr />}
+        </React.Fragment>
+      );
+    });
+    const image = story.picture;
+    const genre = story.genre.map((el, index) => {
+      return (
+        <Link to={`/stories/all/${el}`} key={`gen_${index}`}>
+          {" "}
+          <button className="btn my-3 mx-2 btn-genre">{el}</button>
+        </Link>
+      );
+    });
+    const tags = story.tag.map((el, index) => {
+      return (
+        <Link to={"/stories/all"} key={`tag_${index}`}>
+          <button className="btn my-3 mx-2 btn-tag">{el}</button>
+        </Link>
+      );
+    });
 
-    if (!tags || !genre || !image || !list) return <p>Loading ....</p>
+    if (!tags || !genre || !image || !list) return <p>Loading ....</p>;
     //TODO maybe later a loading spinner
-
-   
 
     return (
       <div>
         <div className="story-container">
-          <div
+          {/* <div
             className="header"
             style={{ backgroundImage: "url(" + image + ")" }}
-          >
+          > */}
             <div className="header-content">
               <h1>{story.title}</h1>
-            </div>
+              <hr/>
+              <h3 className="tagline my-3">
+                <i>{story.tagline}</i>
+              </h3>
+            {/* </div> */}
           </div>
         </div>
-        <h3 className="tagline my-3">
-          <i>{story.tagline}</i>
-        </h3>
+
         <div className="genre">
           {genre}
           {tags}
         </div>
-        
-        {list.length > 0 && <div className="story-container">
-          <div className="story-text py-3">{list}</div>
-        </div>}
-        {!StoryStore.story.is_being_updated &&
-        UserStore._id ||
+
+        {list.length > 0 && (
+          <div className="story-container">
+            <div className="story-text py-3">{list}</div>
+          </div>
+        )}
+        {(!StoryStore.story.is_being_updated && UserStore._id) ||
         (StoryStore.story.is_being_updated &&
           UserStore._id === StoryStore.story.last_updated_by) ? (
           <button
@@ -102,7 +104,9 @@ class StoryContent extends React.Component {
             Add a new part with modal
           </button>
         ) : (
-          <p>Want to contribute? Why not <Link to="/auth/sign-up">sign-up?</Link></p>
+          <p>
+            Want to contribute? Why not <Link to="/auth/sign-up">sign-up?</Link>
+          </p>
         )}
         {/* Failsafe if the toggle/updating is not working */}
         {/* {StoryStore.story.is_being_updated &&

@@ -90,10 +90,15 @@ const storySchema = new Schema({
   is_moderated: {
     type: Boolean,
     default: false,
-  }
+  },
   
   //moderated and approved will play a role later - for now every story added
   //will be public and everybody can contribute ie moderated will be false
+},{
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 });
 
 module.exports = mongoose.model("Story", storySchema);
