@@ -31,7 +31,7 @@ import {
       console.log(UserStore.username)
     return (
       <div>
-        <Navbar dark color="dark" expand="md" className="redb">
+        <Navbar dark expand="md" className="redb">
           <NavbarBrand href="/" className="logo">StoryHub</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           {!UserStore._id && (

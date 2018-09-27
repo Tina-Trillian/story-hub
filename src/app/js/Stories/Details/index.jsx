@@ -32,7 +32,7 @@ class Details extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(interval)
+    // clearInterval(interval)
   }
 
   _toggleSidebar() {
