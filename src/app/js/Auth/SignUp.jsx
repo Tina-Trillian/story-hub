@@ -41,6 +41,14 @@ class SignUp extends React.Component {
                 />
                 <br />
                 <br />
+                <textarea
+                    value={SignUpStore.description}
+                    onChange={evt => SignUpStore.handleInputChange('description', evt.target.value)}
+                    className="input"
+                    placeholder="Tell us more about you ..."
+                />
+                <br />
+                <br />
                 <input
                     type="password"
                     value={SignUpStore.password}

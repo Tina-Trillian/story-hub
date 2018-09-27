@@ -15,7 +15,7 @@ class SignUpStore {
   password = "";
 
   @observable
-  description = null;
+  description = "";
 
   @observable
   picture = undefined;
