@@ -62,7 +62,7 @@ class NewStoryForm extends React.Component {
 
     return (
       <div>
-      <div className="form-container mx-auto mt-md-5 pt-5">
+      <div className="form-container mx-auto my-md-5 pt-5">
         <h1>Start a new story</h1>
         <br />
         <h2 className="mb-4">Title and Tagline</h2>
