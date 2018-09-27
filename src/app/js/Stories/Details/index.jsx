@@ -25,13 +25,13 @@ class Details extends React.Component {
 
   componentDidMount() {
     StoryStore.getStoryById(this.props.match.params.id);
-    // const interval = setInterval(() => {
-    //   StoryStore.getStoryById(this.props.match.params.id)
-    // }, 2000)
+    const interval = setInterval(() => {
+      StoryStore.getStoryById(this.props.match.params.id)
+    }, 2000)
   }
 
   componentWillUnmount() {
-    // clearInterval(interval)
+    clearInterval(interval)
   }
 
   _toggleSidebar() {
