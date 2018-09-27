@@ -35,7 +35,7 @@ class NewPart extends Component {
           </button>
         
         <button
-          className="button button-dark"
+          className="button button-dark ml-2 my-3"
           onClick={() => {
             NewPartStore.resetPart();
             this.props.toggle(false)}}
