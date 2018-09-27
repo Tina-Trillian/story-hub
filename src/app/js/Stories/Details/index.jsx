@@ -19,25 +19,39 @@ class Details extends React.Component {
     this.state = {
       toggle: true
     }
+
+    this._toggleSidebar = this._toggleSidebar.bind(this)
   }
 
   componentDidMount() {
     StoryStore.getStoryById(this.props.match.params.id);
-    const interval = setInterval(() => {
-      console.log("Hello")
-      StoryStore.getStoryById(this.props.match.params.id)
-    }, 2000)
-  
+    // const interval = setInterval(() => {
+    //   console.log("Hello")
+    //   StoryStore.getStoryById(this.props.match.params.id)
+    // }, 2000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(interval)
+  }
+
+  _toggleSidebar() {
+    this.setState({
+      toggle: !this.toggle
+    })
   }
 
   render() {
     return (
-      <div className="container-fluid mt-3">
-      <div className="row">
-      {this.state.toggle && <div className="col-12 col-lg-3 last">
+      <div>
+      <div className="row mx-0">
+      {/* <button
+      onClick={() => console.log("Hello")}
+      className="button toggle-button">See more</button> */}
+      {this.state.toggle && <div className="col-12 col-lg-3 last test">
           <StoryInfo />
         </div>}
-      <div className="col-12 col-lg-9 text-center">
+      <div className="col-12 col-lg-9 text-center test">
           <StoryContent />
         </div>
       </div>

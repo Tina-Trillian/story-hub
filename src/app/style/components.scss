@@ -15,9 +15,28 @@
 
   &-secondary {
     background-color: $secondary-color;
+    color: $white;
 
     &:hover {
       background-color: lighten($secondary-color, 8%);
+    }
+  }
+
+  &-dark {
+    background-color: $primary-color;
+    color: $white;
+
+    &:hover {
+      background-color: lighten($primary-color, 8%);
+    }
+  }
+
+  &-darker {
+    background-color: $text-color;
+    color: $white;
+
+    &:hover {
+      background-color: lighten($text-color, 8%);
     }
   }
 }
@@ -126,7 +145,7 @@
   }
 
   .header-content {
-    padding: 20px;
+    // padding: 20px;
 
     hr {
         width: 70%;
@@ -159,7 +178,7 @@
 }
 
 .inactive {
-    background-color: rgb(77, 77, 77);
+    background-color: $white;
     pointer-events: none;
 }
 
@@ -169,19 +188,23 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background-color: $primary-color;
 
     .character {
         width: 100%;
         padding: 10px;
         border-radius: 10px;
-        background-color: rgb(44, 44, 44);
-        color: white;
+     
+        color: $white;
 
         @media (max-width: 991px) {
             width: auto;
             padding: 10px 40px;
             margin: auto 5px;
         }
+         h4 {
+             color: $text-color
+         }
     }
 
     .characters {
@@ -203,15 +226,6 @@
         justify-content: center;
         flex-wrap: wrap;
 
-        button {
-            margin: 5px 5px;
-            background-color: $primary-color;
-        }
-    }
-
-    button {
-        color: white;
-        background-color: rgb(240, 0, 92);
     }
     
 }
@@ -225,24 +239,32 @@
     }
 
     .btn-tag {
-        color: white;
+        color: $white;
         border: none;
         padding: 10px 15px;
         margin: 10px;
-        background-color: $secondary-color;
+        background-color: $text-color;
         border-radius: 15px 50px 30px;
+
+        &:hover {
+            background-color: lighten($text-color, 8%) 
+        }
     }
 
    
 }
 
 .btn-tag {
-    color: white;
+    color: $white;
     border: none;
     padding: 10px 15px;
     margin: 10px;
-    background-color: $secondary-color;
+    background-color: $text-color;
     border-radius: 15px 50px 30px;
+
+    &:hover {
+        background-color: lighten($text-color, 8%) 
+    }
 }
 
 .tag-container {
@@ -510,6 +532,35 @@
     height: 72vh;
 }
 
+.toggle-button {
+    position: fixed;
+    padding: 10px;
+    transform: rotate(90deg);
+    top: 100px;
+    margin-left: -22px;
+	// transform-origin: left top 0;
+    background-color: red;
+
+    &:hover {
+        background-color: blue;
+    }
+}
+
+.page-footer {
+    color: $white;
+    background-color: $text-color
+}
+
+.info-bar-top {
+    color: $white;
+    width: 100%;
+    height: 100%;
+    background: $text-color;
+}
+
+.test {
+    padding: 0px !important;
+}
    
 
 
