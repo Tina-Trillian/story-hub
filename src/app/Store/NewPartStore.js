@@ -36,7 +36,7 @@ class NewPartStore {
     this.story = StoryStore.story._id;
     this.authorId = UserStore._id;
     this.authorName = UserStore.username;
-    console.log("THIS",toJS(this));
+   
 
       const part = {
         content: this.content,

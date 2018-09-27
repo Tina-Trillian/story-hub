@@ -9,10 +9,8 @@ class NewPart extends Component {
 
   render() {
     return (
-      <div className="story-container part-form">
-        <h2>Add a New Part</h2>
-        <br />
-        <br />
+      <div className="container char-form">
+      <br/>
         <textarea
           name="content"
           onChange={evt =>
@@ -27,7 +25,7 @@ class NewPart extends Component {
         <br />
         
           <button
-            className={`${NewPartStore.content ? "btn" : "btn inactive"}`}
+            className={`${NewPartStore.content ? "button button-dark" : "button inactive"}`}
             onClick={() => {
               this.props.toggle(false);
               NewPartStore.pushButton()
@@ -37,7 +35,7 @@ class NewPart extends Component {
           </button>
         
         <button
-          className="btn"
+          className="button button-dark"
           onClick={() => {
             NewPartStore.resetPart();
             this.props.toggle(false)}}

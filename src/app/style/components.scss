@@ -15,9 +15,28 @@
 
   &-secondary {
     background-color: $secondary-color;
+    color: $white;
 
     &:hover {
       background-color: lighten($secondary-color, 8%);
+    }
+  }
+
+  &-dark {
+    background-color: $primary-color;
+    color: $white;
+
+    &:hover {
+      background-color: lighten($primary-color, 8%);
+    }
+  }
+
+  &-darker {
+    background-color: $text-color;
+    color: $white;
+
+    &:hover {
+      background-color: lighten($text-color, 8%);
     }
   }
 }
@@ -50,6 +69,7 @@
   outline: none;
 }
 
+
 .link {
   color: $primary-color;
   text-decoration: none;
@@ -61,7 +81,7 @@
   }
 
   &:hover {
-    color: lighten($primary-color, 8%);
+    color: lighten($primary-color, 20%);
     
   }
 }
@@ -101,6 +121,8 @@
 
     hr {
         border-top: 1px solid $primary-color;
+        margin-left: auto;
+        margin-right: auto;
         width: 80%;
     }
   }
@@ -126,9 +148,10 @@
   }
 
   .header-content {
-    padding: 20px;
+    // padding: 20px;
 
     hr {
+        margin: 0px auto;
         width: 70%;
     }
   }
@@ -159,7 +182,7 @@
 }
 
 .inactive {
-    background-color: rgb(77, 77, 77);
+    background-color: $white;
     pointer-events: none;
 }
 
@@ -169,19 +192,23 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background-color: $primary-color;
 
     .character {
         width: 100%;
         padding: 10px;
         border-radius: 10px;
-        background-color: rgb(44, 44, 44);
-        color: white;
+     
+        color: $white;
 
         @media (max-width: 991px) {
             width: auto;
             padding: 10px 40px;
             margin: auto 5px;
         }
+         h4 {
+             color: $text-color
+         }
     }
 
     .characters {
@@ -203,15 +230,6 @@
         justify-content: center;
         flex-wrap: wrap;
 
-        button {
-            margin: 5px 5px;
-            background-color: $primary-color;
-        }
-    }
-
-    button {
-        color: white;
-        background-color: rgb(240, 0, 92);
     }
     
 }
@@ -225,24 +243,32 @@
     }
 
     .btn-tag {
-        color: white;
+        color: $white;
         border: none;
         padding: 10px 15px;
         margin: 10px;
-        background-color: $secondary-color;
+        background-color: $text-color;
         border-radius: 15px 50px 30px;
+
+        &:hover {
+            background-color: lighten($text-color, 8%) 
+        }
     }
 
    
 }
 
 .btn-tag {
-    color: white;
+    color: $white;
     border: none;
     padding: 10px 15px;
     margin: 10px;
-    background-color: $secondary-color;
+    background-color: $text-color;
     border-radius: 15px 50px 30px;
+
+    &:hover {
+        background-color: lighten($text-color, 8%) 
+    }
 }
 
 .tag-container {
@@ -275,32 +301,13 @@
 
 .stories-container {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
 
-    // .story-card {
+    // overflow-y: scroll;
+    //     height: 80vh;
     
-    //     width: 33%;
-    //     height: 300px;
-    //     background-size: cover;
-    //     background-repeat: no-repeat;
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: center;
-    //     align-items: center;
-
-    //     h3,h4 {
-    //         color: white
-    //     }
-        
-    // }
-
-    // .story-card:hover {
-    //     border: 2px solid red;
-    // }
-
-    a {
-        width: 30%;
-    }
 }
 
 .carousel-inner {
@@ -353,13 +360,13 @@
   }
   
   .carousel-item:nth-child(1) {
-    background-color: red;
+    background-color: $text-color;
   }
   .carousel-item:nth-child(2) {
-    background-color: blue;
+    background-color: $text-color;
   }
   .carousel-item:nth-child(3) {
-    background-color: yellow;
+    background-color: $text-color;
   }
 
   .carousel-content {
@@ -428,6 +435,8 @@
 
     hr {
         width: 70%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .story-card-home {
@@ -508,6 +517,140 @@
 
 .full-page {
     height: 72vh;
+}
+
+.toggle-button {
+    position: fixed;
+    padding: 10px;
+    transform: rotate(90deg);
+    top: 100px;
+    margin-left: -22px;
+	// transform-origin: left top 0;
+    background-color: red;
+
+    &:hover {
+        background-color: blue;
+    }
+}
+
+.page-footer {
+    color: $white;
+    background-color: $text-color
+}
+
+.info-bar-top {
+    color: $white;
+    width: 100%;
+    height: 100%;
+    background: $text-color;
+}
+
+.search-container-top {
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+        width: 80px;
+        margin-top: 10px;
+    }
+   
+}
+
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .input {
+        width: 10%;
+        margin: 10px;
+    }
+}
+
+.story-card {
+
+    width: 300px;
+    height: 300px;
+    margin: 50px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    
+
+    .card-content {
+        padding: 15px;
+        transition: opacity 1s ease;
+
+       
+    }
+
+    &:hover {
+        text-decoration: none;
+
+        .card-content {
+            opacity: 0.8;
+        }
+        
+    }
+}
+
+.redb {
+    
+    background-color: $text-color !important;
+}
+
+.profile-container {
+
+    .profile-info {
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        hr {
+            border-top: 1px solid $primary-color;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 100px;
+        }
+    }
+
+
+    .profile-primary {
+        background-color: $primary-color;
+        text-align: right;
+
+        .link {
+            color: $white;
+        }
+
+        .link:hover {
+            color: darken($white, 15%)
+        }
+    }
+
+    .profile-darker {
+        background-color: $text-color;
+        color: $white;
+        text-align: left;
+    }
 }
 
    

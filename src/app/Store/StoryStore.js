@@ -60,7 +60,7 @@ class StoryStore {
       {is_being_updated: statement, last_updated_by: UserStore._id})
       .then(result => 
         this.getStoryById(result._id))
-        .then(console.log(toJS(this.story)))
+        // .then(console.log(toJS(this.story)))
   }
 
   @action

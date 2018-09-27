@@ -68,17 +68,23 @@ class List extends React.Component {
     .filter(story => story.length >= this.state.search.minWords)
     .filter(story => this.state.search.genre === "No filter" || story.genre.indexOf(this.state.search.genre) > -1)
     .map((el,index) => {
-        return  <StoryCard key={`story_${index}`} story={el} />
+        return  <StoryCard
+        key={`story_${index}`}
+        story={el}
+        background_all="#E3E4DB"
+        text="#E3E4DB"
+        background_card="#987284" />
     })
+
+    
 
     return (
       <div>
-        <h1>Here are all the stories!</h1>
         <Search
         handleSearchQuery={this._handleSearchQuery}
         search={this.state.search}
         resetSearchQuery={this._resetSearchQuery} />
-        <Link to="/stories/new"><button>Add a new Story here</button></Link>
+        {/* <Link to="/stories/new"><button>Add a new Story here</button></Link> */}
         <div className="stories-container">
         {list}
         </div>

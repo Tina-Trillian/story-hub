@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
 import { withRouter } from 'react-router'
 import SignUpStore from '../../Store/SignUpStore';
+import UserStore from "../../Store/UserStore"
 
 class SignUp extends React.Component {
     componentDidMount() {
@@ -15,9 +16,12 @@ class SignUp extends React.Component {
     //sites
 
     render() {
+
+        if(UserStore._id) return <Redirect to="/" />
+
         return (
             <div>
-                <div className="form-container mx-auto mt-md-5 pt-5">
+                <div className="form-container mx-auto my-md-5 pt-5">
                 <h1 className="mb-4">SignUp</h1>
                 <input
                     type="email"

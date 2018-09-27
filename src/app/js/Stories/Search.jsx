@@ -22,7 +22,8 @@ class Search extends React.Component  {
   });
 
     return (
-      <div>
+      <div className="search-container-top py-5">
+      <div className="search-container">
         <input
           className="input"
           type="text"
@@ -30,7 +31,6 @@ class Search extends React.Component  {
           value={search.query}
           placeholder="Search for a title"
         />
-        <br />
         <input
           className="input"
           type="number"
@@ -39,9 +39,9 @@ class Search extends React.Component  {
           onChange={evt => handleSearchQuery("minWords", evt.target.value)}
           value={search.minWords}
         />
-         <br />
         <Input
         type="select"
+        className="input"
         name="select"
         onChange={evt => handleSearchQuery("genre", evt.target.value)}
         value={search.genre}
@@ -49,10 +49,10 @@ class Search extends React.Component  {
         <option>No filter</option>
           {list}
         </Input>
-        <br />
         <Input
         type="select"
         name="select"
+        className="input"
         onChange={evt => handleSearchQuery("sort", evt.target.value)}
         value={search.sort}
         >
@@ -61,8 +61,10 @@ class Search extends React.Component  {
         <option>Word Count</option>
         <option>Title</option>
         </Input>
-        <br />
-        <button
+      
+      </div>
+      <button
+        className="button"
         onClick={() => resetSearchQuery()}>Reset</button>
       </div>
     );

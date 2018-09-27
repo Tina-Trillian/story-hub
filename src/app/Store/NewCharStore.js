@@ -78,7 +78,7 @@ class NewCharStore {
           .post(`/api/stories/${char.story}/add`, char)
           .then(result => {
             StoryStore.getStoryById(result._id)
-            console.log("Hat geklappt?")
+            
             })
           .catch(err => console.log(err))
   }

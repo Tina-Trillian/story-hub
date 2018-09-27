@@ -70,13 +70,13 @@ class Character extends Component {
           required={true}
         />
         <br />
-        <button className={NewCharStore.allFilled ? "button my-3" : "button inactive my-3"}
+        <button className={NewCharStore.allFilled ? "button button-dark my-3" : "button inactive my-3"}
         onClick={() => {
         this.props.toggle();
         NewCharStore.pushButton()
        }}>Add character</button>
         <button
-          className="button ml-2 my-3"
+          className="button button-dark ml-2 my-3"
           onClick={() => {
             this.props.toggle();
             NewCharStore.resetCharacter()}}

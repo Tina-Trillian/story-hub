@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
+import gif from "../../assets/Eclipse-1s-200px (1).gif"
 
 const items = [
   {
@@ -99,8 +100,8 @@ class CarouselHome extends Component {
               <Link className="link" to="/auth/sign-up">Sign up</Link> and start your journey!
             </h5>
             
-            <p>Already have an account? <Link className="link" to="/auth/sign-in">Sign-in</Link> here</p>
-            <hr />
+            <p>Already have an account? <Link className="link" to="/auth/sign-in">Sign in</Link> here</p>
+           <br/>
             <h5>
               <Link className="link" to="/stories/all">See what others have already contributed</Link>
             </h5>
@@ -109,6 +110,8 @@ class CarouselHome extends Component {
         </CarouselItem>
       );
     });
+
+    if(!slides) return <img src={gif} />
 
     return (
       <Carousel

@@ -31,44 +31,52 @@ class Details extends React.Component {
   render() {
     const story = StoryStore.story;
 
+   
+
     const contributors = story.contributors.map((el, index) => {
       return (
         <Link to={`/profile/${el._id}`} key={`cont_${index}`}>
-          <button className="btn">{el.username}</button>
+          <button className="button button-dark m-1">{el.username}</button>
         </Link>
       );
     });
     const characters = story.characters.map((el, index) => {
-      return <CharacterCard key={`char_${index}`} character={el} />;
+      return <React.Fragment key={`char_${index}`}>
+        <CharacterCard character={el} />
+        <hr/>
+        </React.Fragment>
     });
     const originalAuthor = (
       <Link to={`/profile/${story.originalAuthorId._id}`}>
-        <button className="btn my-3">{story.originalAuthorId.username}</button>
+        <button className="button my-3 mb-5">{story.originalAuthorId.username}</button>
       </Link>
     );
 
     if (!contributors || !characters || !originalAuthor) return "";
 
+    
+
     return (
       <div className="info-container">
-        <div>
-          <h4>Story was started by</h4>
+        <div className="info-bar-top px-3 py-5">
+          <h3 className="mt-2">Story was started by</h3>
           {originalAuthor}
-        </div>
         {contributors.length > 0 && (
           <React.Fragment>
-            <h4>Contributors</h4>
+            <h3>Contributors</h3>
             <div className="contributors my-3">{contributors}</div>
           </React.Fragment>
         )}
+        </div>
         {characters.length > 0 && (
           <React.Fragment>
-            <h4>Characters</h4>
-            <div className="characters">{characters}</div>
+            <h3 className="pt-5">Characters</h3>
+            <div className="characters">
+            <hr/>{characters}</div>
           </React.Fragment>
         )}
         {UserStore._id && (
-          <button className="btn my-4" onClick={this.toggle}>
+          <button className="button button-darker my-4" onClick={this.toggle}>
             Add a new character
           </button>
         )}

@@ -10,6 +10,7 @@ import { Modal } from "reactstrap";
 import StoryStore from "../../../Store/StoryStore";
 import UserStore from "../../../Store/UserStore";
 import NewPart from "../NewPart";
+import gif from "../../../assets/Eclipse-1s-200px (1).gif"
 
 class StoryContent extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class StoryContent extends React.Component {
       StoryStore.story.last_updated_by === UserStore._id &&
       !this.state.modal
     ) {
-      console.log("Helloooo");
+      
       StoryStore.toggleUpdate(false);
     }
 
@@ -52,7 +53,7 @@ class StoryContent extends React.Component {
       return (
         <Link to={`/stories/all/${el}`} key={`gen_${index}`}>
           {" "}
-          <button className="btn my-3 mx-2 btn-genre">{el}</button>
+          <button className="button button-dark my-3 mx-2">{el}</button>
         </Link>
       );
     });
@@ -64,12 +65,12 @@ class StoryContent extends React.Component {
       );
     });
 
-    if (!tags || !genre || !image || !list) return <p>Loading ....</p>;
+    if (!tags || !genre || !image || !list) return <img src={gif} />;
     //TODO maybe later a loading spinner
 
     return (
       <div>
-        <div className="story-container">
+        <div className="story-container pt-5">
           {/* <div
             className="header"
             style={{ backgroundImage: "url(" + image + ")" }}
@@ -91,23 +92,25 @@ class StoryContent extends React.Component {
 
         {list.length > 0 && (
           <div className="story-container">
-            <div className="story-text py-3">{list}</div>
+            <div className="story-text py-3">
+            <hr/>
+            {list}
+            <hr/></div>
           </div>
         )}
         {(!StoryStore.story.is_being_updated && UserStore._id) ||
         (StoryStore.story.is_being_updated &&
           UserStore._id === StoryStore.story.last_updated_by) ? (
           <button
-            className="btn btn-primary my-4"
+            className="button button-dark my-4"
             onClick={() => this.toggle(true)}
           >
-            Add a new part with modal
+            Add a new part to to story
           </button>
-        ) : (
-          <p>
-            Want to contribute? Why not <Link to="/auth/sign-up">sign-up?</Link>
-          </p>
-        )}
+        ) : ""}
+        {!UserStore._id &&  <h4 className="mt-4">
+            Want to contribute? Why not <Link className="link" to="/auth/sign-up">sign-up?</Link>
+          </h4>}
         {/* Failsafe if the toggle/updating is not working */}
         {/* {StoryStore.story.is_being_updated &&
         UserStore._id === StoryStore.story.last_updated_by ? (
@@ -123,7 +126,7 @@ class StoryContent extends React.Component {
         </Modal>
         {StoryStore.story.is_being_updated &&
         StoryStore.story.last_updated_by !== UserStore._id ? (
-          <h3>Another User is writing something ...</h3>
+          <h3 className="primary mt-3">Another User is writing something ...</h3>
         ) : (
           ""
         )}
