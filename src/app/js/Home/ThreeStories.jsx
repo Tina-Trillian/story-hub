@@ -3,20 +3,26 @@ import StoryStore from "../../Store/StoryStore";
 import StoryCardHome from "./StoryCardHome";
 
 
-const ThreeStories = ({stories, title}) => {
+const ThreeStories = ({stories, title, text, background_card, background_all}) => {
 
   const newStories = stories.map((story, index) => {
-    return <StoryCardHome key={`str_${index}`} story={story} />;
+    return <StoryCardHome
+    key={`str_${index}`}
+    story={story}
+    text={text}
+    background_card={background_card} />;
   });
 
+  console.log(background_all)
 
   return (
-    <div className="container about my-5">
+    <div className={`three-stories`} style={{backgroundColor: background_all}}>
       <h1>{title}</h1>
       <hr />
-      <div>
+      <div className="three-stories-content">
         {newStories}
       </div>
+      <hr />
     </div>
   );
 };

@@ -26,7 +26,7 @@ class Application extends React.Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Navigation />
+                <Navigation />
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/profile/:id" component={ProfilePublic} />

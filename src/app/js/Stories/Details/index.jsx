@@ -15,14 +15,18 @@ import StoryInfo from "./StoryInfo";
 class Details extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      toggle: true
+    }
   }
 
   componentDidMount() {
     StoryStore.getStoryById(this.props.match.params.id);
-    // const interval = setInterval(() => {
-    //   console.log("Hello")
-    //   StoryStore.getStoryById(this.props.match.params.id)
-    // }, 1000)
+    const interval = setInterval(() => {
+      console.log("Hello")
+      StoryStore.getStoryById(this.props.match.params.id)
+    }, 2000)
   
   }
 
@@ -30,9 +34,9 @@ class Details extends React.Component {
     return (
       <div className="container-fluid mt-3">
       <div className="row">
-      <div className="col-12 col-lg-3 last">
+      {this.state.toggle && <div className="col-12 col-lg-3 last">
           <StoryInfo />
-        </div>
+        </div>}
       <div className="col-12 col-lg-9 text-center">
           <StoryContent />
         </div>

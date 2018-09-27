@@ -1,17 +1,12 @@
-
-
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StoryCard = ({ story }) => {
-
-
+const StoryCard = ({ story, background_card, text }) => {
   return (
-    <Link to={`/stories/${story._id}`} >
-      <div className="story-card">
-        <h3>{story.title}</h3>
-        <h4>{story.tagline}</h4>
-      </div>
+    <Link to={`/stories/${story._id}`} className="story-card-home">
+        <h3 style={{color: text, backgroundColor: background_card}}>{story.title}</h3>
+        <h4 style={{color: text, backgroundColor: background_card}}>{story.tagline}</h4>
+        <img src={story.picture} />
     </Link>
   );
 };

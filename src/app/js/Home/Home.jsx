@@ -23,8 +23,19 @@ class Home extends React.Component {
         <CarouselHome />
        
         <About />
-        <ThreeStories title="Latest Stories" stories={StoryStore.latest_new}/>
-        <ThreeStories title="Latest Updates" stories={StoryStore.latest_updated}/>
+        <ThreeStories
+        title="Latest Stories"
+        background_all="#987284"
+        text="#E3E4DB"
+        background_card="#333333"
+        stories={StoryStore.latest_new}/>
+        <ThreeStories
+        title="Latest Updates"
+        background_all="#E3E4DB"
+        text="#E3E4DB"
+        background_card="#987284"
+        back=""
+        stories={StoryStore.latest_updated}/>
       </div>
     );
   }

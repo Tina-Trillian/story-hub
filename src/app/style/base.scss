@@ -1,14 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Cedarville+Cursive');
+@import url('https://fonts.googleapis.com/css?family=Old+Standard+TT:400,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600');
 
 * {
     box-sizing: border-box;
 }
 
+
+
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: $text-color;
+    background-color: $white;
+
+    h1,h2,h3,h4 {
+        font-family: 'Old Standard TT', serif;
+    }
+
+    .primary {
+        color: $primary-color
+    }
+
+    .secondary {
+        color: $secondary-color
+    }
+
+    .secondary-background {
+        background-color: $secondary-color
+    }
+
+    .primary-background {
+        background-color: $primary-color
+    }
+
 }
 

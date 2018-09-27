@@ -16,8 +16,9 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <h1>SignUp</h1>
+            <div>
+                <div className="form-container mx-auto mt-md-5 pt-5">
+                <h1 className="mb-4">SignUp</h1>
                 <input
                     type="email"
                     value={SignUpStore.email}
@@ -64,10 +65,10 @@ class SignUp extends React.Component {
                 <br />
                 <br />
                 <p>{SignUpStore.message}</p>
-                <div className="separator" />
                 <Link className="link" to="/auth/sign-in">
                     Do you have an account already? Sign in instead!
                 </Link>
+            </div>
             </div>
         )
     }
