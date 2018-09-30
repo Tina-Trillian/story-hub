@@ -19,7 +19,7 @@ class Details extends React.Component {
     this.state = {
       toggle: true
     }
-
+    //Toggle sidebar later
     this._toggleSidebar = this._toggleSidebar.bind(this)
   }
 
@@ -28,17 +28,24 @@ class Details extends React.Component {
     this.interval = setInterval(() => {
       StoryStore.getStoryById(this.props.match.params.id)
     }, 2000)
+    //sets and interval to refresh the information that is gotten from the
+    //backend with the api call
+    //so changes are shown immidiatley and when another User is writing it 
+    //will be displayed
   }
 
   componentWillUnmount() {
     clearInterval(this.interval)
+    //clears intervall when the Details side is left
   }
 
-  _toggleSidebar() {
-    this.setState({
-      toggle: !this.toggle
-    })
-  }
+
+  //toggling sidebar for later
+  // _toggleSidebar() {
+  //   this.setState({
+  //     toggle: !this.toggle
+  //   })
+  // }
 
   render() {
     return (
@@ -50,6 +57,8 @@ class Details extends React.Component {
       {this.state.toggle && <div className="col-12 col-lg-3 last test px-0">
           <StoryInfo />
         </div>}
+        {/* Story content moves to the top across the whole page when
+        the screen gets smaller */}
       <div className="col-12 col-lg-9 text-center test">
           <StoryContent />
         </div>

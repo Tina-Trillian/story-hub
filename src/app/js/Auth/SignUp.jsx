@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { observer } from 'mobx-react'
-
 import { withRouter } from 'react-router'
+
 import SignUpStore from '../../Store/SignUpStore';
 import UserStore from "../../Store/UserStore"
+
 
 class SignUp extends React.Component {
     componentDidMount() {
@@ -77,6 +78,8 @@ class SignUp extends React.Component {
                 <br />
                 <br />
                 <p>{SignUpStore.message}</p>
+                {/* Displays the error if there is one, will also
+                display the loading message when image is loading */}
                 <Link className="link" to="/auth/sign-in">
                     Do you have an account already? Sign in instead!
                 </Link>

@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//displays the Story passed down, can also be reused for different backgrounds
+//as the color gets passed down as well
+//is adatable
+
 const StoryCard = ({ story, background_card, text }) => {
   return (
     <Link to={`/stories/${story._id}`} className="story-card-home">

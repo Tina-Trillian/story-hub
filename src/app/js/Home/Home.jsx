@@ -1,11 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { observer, renderReporter } from "mobx-react";
-import UserStore from "../../Store/UserStore";
-import StoryStore from "../../Store/StoryStore";
-import { toJS } from "mobx";
+import { observer } from "mobx-react";
 
-import StoryCardHome from "./StoryCardHome";
+import StoryStore from "../../Store/StoryStore";
 import CarouselHome from "./Carousel";
 import About from "./About"
 import ThreeStories from "./ThreeStories"
@@ -14,6 +10,8 @@ import ThreeStories from "./ThreeStories"
 class Home extends React.Component {
   componentDidMount() {
     StoryStore.getHomeStories();
+    //gets all the recent Updated and stories fromt he api and stores them in
+    //the StoriesStore
   }
 
   render() {
@@ -21,8 +19,9 @@ class Home extends React.Component {
     return (
       <div>
         <CarouselHome />
-       
         <About />
+        {/* Setting the colors for the component so that the 
+        component can be reused */}
         <ThreeStories
         title="Latest Stories"
         background_all="#987284"

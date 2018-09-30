@@ -1,15 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-
 import { observer } from "mobx-react";
-import { toJS } from "mobx";
-
 import { Modal } from "reactstrap";
 
 import StoryStore from "../../../Store/StoryStore";
 import UserStore from "../../../Store/UserStore";
 import NewPart from "../NewPart";
+
 import gif from "../../../assets/Eclipse-1s-200px (1).gif"
 
 class StoryContent extends React.Component {
@@ -21,6 +19,8 @@ class StoryContent extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  //toggles when it is triggered, includes statement to make sure that the
+  //right boolean is triggered
   toggle(statement) {
     StoryStore.toggleUpdate(statement);
     this.setState({
@@ -37,6 +37,9 @@ class StoryContent extends React.Component {
       
       StoryStore.toggleUpdate(false);
     }
+
+    //makes sure when the page is refreshed that all information from the database
+    //is up to date
 
     const story = StoryStore.story;
 
@@ -66,7 +69,7 @@ class StoryContent extends React.Component {
     });
 
     if (!tags || !genre || !image || !list) return <img src={gif} />;
-    //TODO maybe later a loading spinner
+    //shows a spinner, while loading
 
     return (
       <div>
@@ -89,7 +92,7 @@ class StoryContent extends React.Component {
           {genre}
           {tags}
         </div>
-
+        
         {list.length > 0 && (
           <div className="story-container">
             <div className="story-text py-3">

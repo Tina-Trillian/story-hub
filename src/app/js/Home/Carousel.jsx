@@ -3,39 +3,31 @@ import { render } from "react-dom";
 import {
   Carousel,
   CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
+  CarouselIndicators
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
 import gif from "../../assets/Eclipse-1s-200px (1).gif"
 
+//Set all the items (picture, text) that should be displayed in the carousel
 const items = [
   {
-    title: "Share your stories",
-    text:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
     src:
       "https://images.unsplash.com/photo-1531904709672-86d3307b3d28?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=235aa37202a667453c37656575c71d31&auto=format&fit=crop&w=750&q=80"
   },
   {
-    title: "Be part of a community of writers",
-    text:
-      "Lorem ipsum dolor sit sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
     src:
       "https://images.unsplash.com/photo-1537883927710-61d5d1a2c1e9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0bf498a63b771656f26a8124eeb3e6be&auto=format&fit=crop&w=668&q=80"
   },
   {
-    title: "Start the journey",
-    text:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
     src:
       "https://images.unsplash.com/photo-1537910885113-9b060713da20?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=018d39f323d3618549f909f813e8a5ba&auto=format&fit=crop&w=750&q=80"
   }
 ];
 
 class CarouselHome extends Component {
+
+  //functions to handle the carousel moving to the next slide
   constructor(props) {
     super(props);
     this.state = { activeIndex: 0 };
@@ -80,6 +72,7 @@ class CarouselHome extends Component {
   render() {
     const { activeIndex } = this.state;
 
+    // for every item in the array one slide will be generated
     const slides = items.map(item => {
       return (
         <CarouselItem
@@ -87,6 +80,7 @@ class CarouselHome extends Component {
           onExited={this.onExited}
           key={item.src}
         >
+        {/* Text will stay the same, picture will change */}
           <div className="carousel-content">
             <h1 className="mb-4">Share your stories</h1>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -112,6 +106,8 @@ class CarouselHome extends Component {
     });
 
     if(!slides) return <img src={gif} />
+
+    //further animation is handled in the scss file 
 
     return (
       <Carousel

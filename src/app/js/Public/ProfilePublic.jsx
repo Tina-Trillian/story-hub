@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import { withRouter } from "react-router";
 
@@ -12,6 +12,8 @@ class ProfilePublic extends Component {
   }
 
   render() {
+
+    //gets all stories that the User created and creates a link
     const stories = ProfileStore.stories.map((el, index) => {
       return (
         <h5 key={`stor_${index}`}>
@@ -22,6 +24,7 @@ class ProfilePublic extends Component {
       );
     });
 
+    //gets all stories that the User contributed to and creates a link
     const parts = ProfileStore.parts.map((el, index) => {
       return (
         <h5 key={`part_${index}`}>
@@ -43,6 +46,8 @@ class ProfilePublic extends Component {
             {ProfileStore.description}
             <br />
           </div>
+          {/* helps to keep the site responsive,the columns will behave diffrently
+          depending on the sreen size */}
           <div className="col-lg-4 col-sm-6 col-12 profile-stories py-5 px-3 profile-primary">
           <h2>Stories I created</h2>
           {stories}

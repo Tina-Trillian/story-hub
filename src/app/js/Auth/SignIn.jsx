@@ -51,6 +51,7 @@ class SignIn extends React.Component {
                 <br />
                 <br />
                 <p>{SignUpStore.error}</p>
+                {/* Displays the error when there is one */}
                 <Link className="link" to="/auth/sign-up">
                     Don't have an account yet? Sign up instead!
                 </Link>
@@ -61,3 +62,5 @@ class SignIn extends React.Component {
 }
 
 export default withRouter(observer(SignIn))
+//exports the component with the url-parameters and "observes" the changes
+//in the Stores that are imported

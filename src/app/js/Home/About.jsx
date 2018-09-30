@@ -1,5 +1,6 @@
 import React from "react";
 
+//Simple display component to display the About information
 
 const About = () => {
   return (

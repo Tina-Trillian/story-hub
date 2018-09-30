@@ -1,5 +1,7 @@
 import React from 'react';
 
+//Simple display component to show the character information
+
 const CharacterCard = ({character}) => {
     return (
         <div className="character my-2 pt-4">
