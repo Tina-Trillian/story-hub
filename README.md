@@ -12,14 +12,12 @@ To start the server-api and the react-app:
 `$ npm install`  
 `$ npm run dev`  
  
- Next
 
 # StoryHub
 
 ![Logo](
       /src/app/assets/Logo.png)
       
-//<img src="/src/app/assets/Logo.png" height="24" width="48">
 
 ## Description
 
