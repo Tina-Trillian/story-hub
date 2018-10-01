@@ -1,4 +1,4 @@
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 ## Story-Hub
 
