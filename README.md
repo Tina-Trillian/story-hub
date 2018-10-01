@@ -1,6 +1,6 @@
-![Image of Yaktocat](
+![Logo](
       /src/app/assets/Logo.png
     )
 
-## Story-Hub
+## StoryHub
 
