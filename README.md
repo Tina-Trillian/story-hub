@@ -2,6 +2,8 @@
 
 ![Logo](
       /src/app/assets/Logo.png | width=100)
+      
+(https://github.com/favicon.ico =24x48)
 
 ## Description
 
