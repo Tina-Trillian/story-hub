@@ -3,7 +3,7 @@
 ![Logo](
       /src/app/assets/Logo.png | width=100)
       
-<img src="https://github.com/favicon.ico" height="24" width="48">
+<img src="/src/app/assets/Logo.png" height="24" width="48">
 
 ## Description
 
