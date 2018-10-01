@@ -27,7 +27,7 @@ Story Hub is a collaborations plattform for writing stories together. Every user
 
 ## Screenshots
 
-<img src="/src/app/assets/home1.png" width="100">
+<img src="/src/app/assets/home1.png" width="200">
 
     
 
