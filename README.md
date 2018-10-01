@@ -18,7 +18,9 @@ To clone this repo:
 
 To start the server-api and the react-app:
 
-`$ cd story-hub`
-`$ npm install`
-`$ npm run dev`
+`$ cd story-hub`  
+`$ npm install`  
+`$ npm run dev`  
+ 
+ Next
 
