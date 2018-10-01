@@ -1,9 +1,9 @@
 # StoryHub
 
 ![Logo](
-      /src/app/assets/Logo.png | width=100)
+      /src/app/assets/Logo.png)
       
-<img src="/src/app/assets/Logo.png" height="24" width="48">
+//<img src="/src/app/assets/Logo.png" height="24" width="48">
 
 ## Description
 
