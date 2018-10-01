@@ -1,4 +1,6 @@
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of Yaktocat](
+      story-hub/src/app/assets/Logo.png
+    )
 
 ## Story-Hub
 
