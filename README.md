@@ -1,8 +1,7 @@
 # StoryHub
 
 ![Logo](
-      /src/app/assets/Logo.png
-    =250x)
+      /src/app/assets/Logo.png =250x)
 
 ## Description
 
