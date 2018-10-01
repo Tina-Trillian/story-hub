@@ -14,4 +14,11 @@ It is a MERN-Stack application that works with MobX stores for state management.
 
 To clone this repo: 
 
-`$ git clone  url`
+`$ git clone https://github.com/Tina-Trillian/story-hub`
+
+To start the server-api and the react-app:
+
+`$ cd story-hub`
+`$ npm install`
+`$ npm run dev`
+
