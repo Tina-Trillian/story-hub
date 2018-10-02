@@ -40,7 +40,7 @@ class Details extends React.Component {
   }
 
 
-  toggling sidebar for later
+  //toggling sidebar for later
    _toggleSidebar() {
      this.setState({
        toggle: !this.toggle
