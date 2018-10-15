@@ -20,7 +20,7 @@ class Details extends React.Component {
       toggle: true
     }
     //Toggle sidebar later
-    this._toggleSidebar = this._toggleSidebar.bind(this)
+    // this._toggleSidebar = this._toggleSidebar.bind(this)
   }
 
   componentDidMount() {
