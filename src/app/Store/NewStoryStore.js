@@ -70,12 +70,19 @@ class NewStoryStore {
     this.genreList[key] = newValue;
   }
 
+  //takes the temporary input and adds it as a tag
   @action
   addTag() {
     if (this.temp.length > 0) {
     this.tag.push(this.temp);
     this.temp = "";
     }
+  }
+
+  //finds the tag in the tag Array and deletes it
+  @action
+  deleteTag(tag) {
+    this.tag.splice(this.tag.indexOf(tag), 1)
   }
 
   //TODO creating new Story

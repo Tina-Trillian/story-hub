@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Redirect } from "react-router"
 
@@ -30,7 +30,10 @@ class NewStoryForm extends React.Component {
 
 
     const tagList = NewStoryStore.tag.map((el, index) => {
-      return <button className="btn-tag" key={`tag_${index}`}>{el}</button>;
+      return <Fragment key={`tag_${index}`}>
+      <button className="btn-tag" >{el}</button>
+      <button className="btn-x" onClick={() => NewStoryStore.deleteTag(el) }>x</button>      
+      </Fragment>;
     });
 
     let genreList;
